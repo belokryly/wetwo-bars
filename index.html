@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bars — Wetwo Studio</title>
+<meta name="description" content="Bar website redesigns by Wetwo Studio. NYC.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root[data-theme="dark"] {
+    --bg: #0a0907;
+    --surface: #14110d;
+    --ink: #f4f0e6;
+    --ink-soft: #b8b1a0;
+    --ink-mute: #6e685b;
+    --rule: #26231e;
+    --accent: #d4a655;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f3ec;
+    --surface: #fbf9f3;
+    --ink: #14110d;
+    --ink-soft: #4a463e;
+    --ink-mute: #8c8678;
+    --rule: #d8d2c2;
+    --accent: #b08a3e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display { font-family: 'Anton', 'Archivo', sans-serif; font-weight: 400; }
+  .heavy { font-family: 'Archivo', sans-serif; font-weight: 700; }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+  img { display: block; max-width: 100%; height: auto; }
+
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HEADER */
+  header {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .logo .dot { color: var(--accent); }
+  .logo .crumb { color: var(--ink-mute); font-weight: 400; margin-left: 4px; }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle-group {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    padding: 4px;
+  }
+
+  .toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    padding: 7px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Archivo', sans-serif;
+    transition: background .2s, color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toggle-btn:hover { color: var(--ink); }
+  .toggle-btn.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .toggle-btn svg { width: 14px; height: 14px; }
+
+  @media (max-width: 520px) {
+    .toggle-btn .label { display: none; }
+    .toggle-btn { padding: 7px 10px; }
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 88px 0 56px;
+    max-width: 760px;
+  }
+
+  @media (max-width: 720px) {
+    .intro { padding: 56px 0 40px; }
+  }
+
+  .eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+
+  h1 .accent {
+    color: var(--accent);
+    font-weight: 400;
+    text-transform: none;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.05em;
+    letter-spacing: -0.01em;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* CARDS */
+  .cards { flex: 1; padding-bottom: 96px; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  @media (max-width: 920px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .3s ease;
+  }
+
+  .card:hover { transform: translateY(-4px); }
+
+  .device {
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  /* Laptop frame */
+  .device.laptop {
+    aspect-ratio: 16 / 10.5;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px 10px 4px 4px;
+    padding: 10px 10px 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .device.laptop::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36%;
+    height: 5px;
+    background: var(--rule);
+    border-radius: 0 0 6px 6px;
+  }
+
+  .device.laptop .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  :root[data-theme="light"] .device.laptop .browser-bar {
+    border-bottom-color: rgba(0,0,0,0.05);
+  }
+
+  .browser-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--rule);
+    opacity: 0.7;
+  }
+
+  .browser-url {
+    margin-left: 10px;
+    font-size: 9px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    font-family: 'Inter', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .device.laptop .screen-wrap {
+    flex: 1;
+    margin-top: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+  }
+
+  /* Phone frame */
+  .device.phone {
+    aspect-ratio: 9 / 18;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 28px;
+    padding: 7px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .device.phone::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 18px;
+    background: var(--bg);
+    border-radius: 100px;
+    z-index: 2;
+  }
+
+  .device.phone .screen-wrap {
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+  }
+
+  /* Real screenshot — when file is present */
+  .screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  /* CSS fallback screens — shown until you replace with real screenshots */
+  .screen-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8% 4%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Starr fallback */
+  .fallback-starr {
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(212,166,85,0.25) 0%, transparent 60%),
+      linear-gradient(180deg, #14110b 0%, #1c1610 100%);
+    color: #d4a655;
+  }
+
+  .fallback-starr .marquee {
+    position: absolute;
+    top: 4%;
+    left: 0; right: 0;
+    font-size: 7px;
+    color: rgba(212,166,85,0.35);
+    letter-spacing: 0.3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0 2%;
+  }
+
+  .fallback-starr .wordmark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 6vw, 56px);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    background: linear-gradient(180deg, #e8b86e 0%, #b08a3e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+
+  .fallback-starr .sub {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.4vw, 12px);
+    color: rgba(212,166,85,0.55);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .fallback-starr .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    max-width: 90%;
+  }
+
+  .fallback-starr .pill {
+    font-size: 7px;
+    padding: 3px 8px;
+    border: 1px solid rgba(212,166,85,0.3);
+    border-radius: 100px;
+    color: rgba(212,166,85,0.7);
+    letter-spacing: 0.04em;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Estelle fallback — neon */
+  .fallback-estelle {
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,46,196,0.25) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(94,231,255,0.2) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0a14 0%, #14101e 100%);
+    color: #fff;
+  }
+
+  .fallback-estelle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        180deg,
+        transparent 0,
+        transparent 3px,
+        rgba(255,255,255,0.015) 3px,
+        rgba(255,255,255,0.015) 4px
+      );
+    pointer-events: none;
+  }
+
+  .fallback-estelle .neon-frame {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 6.5vw, 58px);
+    letter-spacing: 0.01em;
+    line-height: 1;
+    color: #ff5edc;
+    text-shadow:
+      0 0 8px rgba(255,94,220,0.7),
+      0 0 16px rgba(255,94,220,0.4),
+      0 0 32px rgba(255,94,220,0.25);
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+
+  .fallback-estelle .karaoke-text {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: clamp(7px, 1.2vw, 10px);
+    color: #5ee7ff;
+    text-shadow: 0 0 6px rgba(94,231,255,0.6);
+    letter-spacing: 0.3em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fallback-estelle .neon-pills {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 92%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fallback-estelle .neon-pill {
+    font-family: 'Archivo', sans-serif;
+    font-size: 7px;
+    padding: 3px 8px;
+    border: 1px solid rgba(255,94,220,0.3);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* Platinum fallback */
+  .fallback-platinum {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(220,220,235,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0a0d 0%, #14141a 100%);
+    color: #e8e6f0;
+  }
+
+  .fallback-platinum::before {
+    content: '';
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9c8d0, transparent);
+  }
+
+  .fallback-platinum .stamp {
+    position: absolute;
+    top: 6%;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: 6px;
+    color: rgba(232,230,240,0.4);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .fallback-platinum .pt-mark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: clamp(26px, 5.8vw, 52px);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #e8e6f0;
+    margin-bottom: 3px;
+  }
+
+  .fallback-platinum .pt-sub {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.3vw, 11px);
+    color: rgba(232,230,240,0.5);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .fallback-platinum .pt-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 7px;
+    color: rgba(232,230,240,0.5);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .fallback-platinum .pt-meta .sep {
+    color: rgba(232,230,240,0.25);
+  }
+
+  /* Card meta */
+  .card-meta {
+    padding: 0 4px;
+  }
+
+  .card-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-mute);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .card-tag {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .card:hover .card-link {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .card-link .arr { transition: transform .2s; }
+  .card:hover .card-link .arr { transform: translate(2px, -2px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-inner a {
+    color: var(--ink-soft);
+    transition: color .2s;
+  }
+
+  .footer-inner a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="https://wetwo.studio" class="logo">
+      wetwo<span class="dot">.</span>studio<span class="crumb"> / bars</span>
+    </a>
+    <div class="controls">
+
+      <div class="toggle-group" role="tablist" aria-label="Preview format">
+        <button class="toggle-btn active" data-view="laptop" aria-pressed="true" title="Desktop preview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+          <span class="label">Desktop</span>
+        </button>
+        <button class="toggle-btn" data-view="phone" aria-pressed="false" title="Mobile preview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+          <span class="label">Mobile</span>
+        </button>
+      </div>
+
+      <div class="toggle-group" role="tablist" aria-label="Theme">
+        <button class="toggle-btn" data-theme="light" aria-pressed="false" title="Light theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button class="toggle-btn active" data-theme="dark" aria-pressed="true" title="Dark theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="container">
+    <div class="eyebrow">Selected work · NYC</div>
+    <h1>
+      Bar website redesigns,
+      <span class="accent">built by hand.</span>
+    </h1>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="container">
+    <div class="cards-grid">
+
+      <!-- ─────  STARR  ───── -->
+      <a
+        href="https://by-we2-233-starr.vercel.app/guide.html"
+        target="_blank" rel="noopener"
+        class="card"
+        data-card
+        data-shot-desktop="screenshots/starr-desktop.png"
+        data-shot-mobile="screenshots/starr-mobile.png"
+      >
+        <div class="device laptop" data-device>
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">233starr.com</span>
+          </div>
+          <div class="screen-wrap" data-screen-wrap>
+            <div class="screen-fallback fallback-starr">
+              <div class="marquee">★ K-POP · RESERVE · OPEN TILL 2 AM ★</div>
+              <div class="wordmark">233 STARR</div>
+              <div class="sub">Karaoke &amp; Eats</div>
+              <div class="pills">
+                <span class="pill">Private Rooms</span>
+                <span class="pill">K-Pop</span>
+                <span class="pill">BYOB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">01 / Karaoke lounge</div>
+          <h3 class="card-title">233 Starr</h3>
+          <p class="card-tag">Brooklyn karaoke &amp; eats</p>
+          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+        </div>
+      </a>
+
+      <!-- ─────  ESTELLE  ───── -->
+      <a
+        href="https://by-we2-estelle-karaoke.vercel.app/guide.html"
+        target="_blank" rel="noopener"
+        class="card"
+        data-card
+        data-shot-desktop="screenshots/estelle-desktop.png"
+        data-shot-mobile="screenshots/estelle-mobile.png"
+      >
+        <div class="device laptop" data-device>
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">estellekaraokebar.com</span>
+          </div>
+          <div class="screen-wrap" data-screen-wrap>
+            <div class="screen-fallback fallback-estelle">
+              <div class="neon-frame">Estelle</div>
+              <div class="karaoke-text">Karaoke Bar</div>
+              <div class="neon-pills">
+                <span class="neon-pill">Live till 4 AM</span>
+                <span class="neon-pill">Private Rooms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">02 / Karaoke bar</div>
+          <h3 class="card-title">Estelle</h3>
+          <p class="card-tag">Late-night neon karaoke</p>
+          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+        </div>
+      </a>
+
+      <!-- ─────  PLATINUM  ───── -->
+      <a
+        href="https://by-we2-platinum-nyc.vercel.app/guide.html"
+        target="_blank" rel="noopener"
+        class="card"
+        data-card
+        data-shot-desktop="screenshots/platinum-desktop.png"
+        data-shot-mobile="screenshots/platinum-mobile.png"
+      >
+        <div class="device laptop" data-device>
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">platinum.nyc</span>
+          </div>
+          <div class="screen-wrap" data-screen-wrap>
+            <div class="screen-fallback fallback-platinum">
+              <div class="stamp">N · Y · C</div>
+              <div class="pt-mark">Platinum</div>
+              <div class="pt-sub">a karaoke lounge</div>
+              <div class="pt-meta">
+                <span>Members</span>
+                <span class="sep">·</span>
+                <span>Private</span>
+                <span class="sep">·</span>
+                <span>Late</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-num">03 / Premium lounge</div>
+          <h3 class="card-title">Platinum</h3>
+          <p class="card-tag">A premium karaoke lounge</p>
+          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2025 WETWO STUDIO · NYC</span>
+    <a href="mailto:hello@wetwo.studio">hello@wetwo.studio</a>
+  </div>
+</footer>
+
+<script>
+  /* ─────────  THEME  ───────── */
+  const root = document.documentElement;
+  const themeBtns = document.querySelectorAll('.toggle-btn[data-theme]');
+
+  const savedTheme = localStorage.getItem('wetwo-theme') || 'dark';
+  root.setAttribute('data-theme', savedTheme);
+  themeBtns.forEach(b => {
+    const is = b.dataset.theme === savedTheme;
+    b.classList.toggle('active', is);
+    b.setAttribute('aria-pressed', is);
+  });
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.theme;
+      root.setAttribute('data-theme', t);
+      localStorage.setItem('wetwo-theme', t);
+      themeBtns.forEach(b => {
+        const is = b.dataset.theme === t;
+        b.classList.toggle('active', is);
+        b.setAttribute('aria-pressed', is);
+      });
+    });
+  });
+
+  /* ─────────  VIEW (desktop / mobile)  ───────── */
+  const viewBtns = document.querySelectorAll('.toggle-btn[data-view]');
+  const cards = document.querySelectorAll('[data-card]');
+
+  function setView(v) {
+    cards.forEach(card => {
+      const device = card.querySelector('[data-device]');
+      const screenWrap = card.querySelector('[data-screen-wrap]');
+      const browserBar = device.querySelector('.browser-bar');
+
+      device.classList.remove('laptop', 'phone');
+      device.classList.add(v);
+
+      if (browserBar) {
+        browserBar.style.display = v === 'phone' ? 'none' : '';
+      }
+
+      // Swap screenshot if file path is provided
+      const shotPath = card.dataset[v === 'phone' ? 'shotMobile' : 'shotDesktop'];
+
+      // Try to use the image; fall back to existing CSS preview if it fails to load
+      const existingImg = screenWrap.querySelector('.screen-img');
+      const existingFallback = screenWrap.querySelector('.screen-fallback');
+
+      if (shotPath) {
+        const img = new Image();
+        img.src = shotPath;
+        img.className = 'screen-img';
+        img.alt = '';
+
+        img.onload = () => {
+          if (existingImg) existingImg.remove();
+          if (existingFallback) existingFallback.style.display = 'none';
+          screenWrap.appendChild(img);
+        };
+
+        img.onerror = () => {
+          // image not found — keep CSS fallback visible
+          if (existingImg) existingImg.remove();
+          if (existingFallback) existingFallback.style.display = '';
+        };
+      }
+    });
+
+    viewBtns.forEach(b => {
+      const is = b.dataset.view === v;
+      b.classList.toggle('active', is);
+      b.setAttribute('aria-pressed', is);
+    });
+    localStorage.setItem('wetwo-view', v);
+  }
+
+  const savedView = localStorage.getItem('wetwo-view') || 'laptop';
+  setView(savedView);
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+</script>
+
+</body>
+</html>
