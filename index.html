@@ -68,7 +68,7 @@
     padding: 0 24px;
   }
 
-  /* HEADER */
+  /* ─── HEADER ─── */
   header { padding: 24px 0; border-bottom: 1px solid var(--rule); }
   .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 
@@ -82,99 +82,6 @@
 
   .controls { display: flex; align-items: center; gap: 8px; }
 
-  /* Capacity progress widget */
-  .capacity {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 7px 14px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    min-width: 200px;
-  }
-
-  .capacity-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    line-height: 1.2;
-  }
-
-  .capacity-month {
-    font-size: 9.5px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-  }
-
-  .capacity-count {
-    font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-  }
-
-  .capacity-count .lim { color: var(--ink-mute); font-weight: 400; }
-
-  .capacity-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--rule);
-    border-radius: 100px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .capacity-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 100px;
-    transition: width .8s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Subtle moving shine on the fill */
-  .capacity-fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255,255,255,0.25) 50%,
-      transparent 100%);
-    animation: capacity-shine 2.6s ease-in-out infinite;
-  }
-
-  @keyframes capacity-shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-  }
-
-  .capacity-status {
-    font-size: 10px;
-    color: var(--ink-mute);
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-  }
-
-  .capacity-status.warn {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* On mobile / narrow — hide the whole capacity widget to free space */
-  @media (max-width: 880px) {
-    .capacity { display: none; }
-  }
-
   .toggle-group {
     display: inline-flex;
     background: var(--surface);
@@ -187,13 +94,10 @@
     color: var(--ink-mute);
     padding: 7px 14px;
     border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 12px; font-weight: 500;
     font-family: 'Archivo', sans-serif;
     transition: background .2s, color .2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    display: inline-flex; align-items: center; gap: 6px;
     cursor: pointer;
   }
   .toggle-btn:hover { color: var(--ink); }
@@ -205,7 +109,7 @@
     .toggle-btn { padding: 7px 10px; }
   }
 
-  /* INTRO */
+  /* ─── INTRO ─── */
   .intro { padding: 88px 0 56px; max-width: 760px; }
 
   @media (max-width: 720px) {
@@ -214,47 +118,34 @@
 
   .eyebrow {
     font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--ink-mute);
     margin-bottom: 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
   }
 
   .eyebrow::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
+    content: ''; width: 24px; height: 1px; background: var(--accent);
   }
 
   h1 {
     font-family: 'Archivo', sans-serif;
     font-size: clamp(36px, 6vw, 64px);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    font-weight: 700;
-    color: var(--ink);
+    line-height: 1; letter-spacing: -0.03em;
+    font-weight: 700; color: var(--ink);
     text-transform: uppercase;
   }
 
   h1 .accent {
-    color: var(--accent);
-    font-weight: 400;
-    text-transform: none;
-    font-family: 'Anton', sans-serif;
-    font-size: 1.05em;
-    letter-spacing: -0.01em;
-    display: block;
-    margin-top: 4px;
+    color: var(--accent); font-weight: 400;
+    text-transform: none; font-family: 'Anton', sans-serif;
+    font-size: 1.05em; letter-spacing: -0.01em;
+    display: block; margin-top: 4px;
   }
 
-  /* CARDS */
-  .cards { flex: 1; padding-bottom: 180px; } /* extra space for fixed CTA bar */
+  /* ─── CARDS ─── */
+  .cards { padding-bottom: 80px; }
 
   .cards-grid {
     display: grid;
@@ -263,11 +154,54 @@
   }
 
   @media (max-width: 920px) {
-    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   }
 
+  /* ─── Mobile: single column with dividers ─── */
   @media (max-width: 640px) {
-    .cards-grid { grid-template-columns: 1fr; gap: 28px; }
+    .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 0; /* dividers handle spacing */
+    }
+    .card-divider { display: flex; }
+    .card-wrap:not(:first-child) { padding-top: 56px; }
+    .card-wrap { padding-bottom: 56px; }
+    .card-wrap:last-child { padding-bottom: 24px; }
+  }
+
+  /* On 2-col tablet — also show dividers between rows */
+  @media (max-width: 920px) and (min-width: 641px) {
+    .cards-grid { gap: 32px 24px; }
+  }
+
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Divider — only on mobile */
+  .card-divider {
+    display: none;
+    align-items: center;
+    gap: 16px;
+    padding: 0 20%;
+    margin-bottom: 56px;
+  }
+
+  .card-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule-strong), transparent);
+  }
+
+  .card-divider .num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--accent);
+    text-transform: uppercase;
+    flex-shrink: 0;
   }
 
   .card {
@@ -277,7 +211,7 @@
   }
   .card:hover { transform: translateY(-4px); }
 
-  .device { margin-bottom: 18px; position: relative; }
+  .device { margin-bottom: 22px; position: relative; }
 
   .device.laptop {
     aspect-ratio: 16 / 10.5;
@@ -290,10 +224,8 @@
   }
 
   .device.laptop::after {
-    content: '';
-    position: absolute;
-    bottom: -6px; left: 50%;
-    transform: translateX(-50%);
+    content: ''; position: absolute;
+    bottom: -6px; left: 50%; transform: translateX(-50%);
     width: 36%; height: 5px;
     background: var(--rule);
     border-radius: 0 0 6px 6px;
@@ -311,13 +243,10 @@
   .browser-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); opacity: 0.7; }
 
   .browser-url {
-    margin-left: 10px;
-    font-size: 9px;
-    color: var(--ink-mute);
-    letter-spacing: 0.04em;
+    margin-left: 10px; font-size: 9px;
+    color: var(--ink-mute); letter-spacing: 0.04em;
     font-family: 'Inter', monospace;
-    white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
 
   .device.laptop .screen-wrap {
@@ -338,10 +267,8 @@
   }
 
   .device.phone::before {
-    content: '';
-    position: absolute;
-    top: 14px; left: 50%;
-    transform: translateX(-50%);
+    content: ''; position: absolute;
+    top: 14px; left: 50%; transform: translateX(-50%);
     width: 70px; height: 18px;
     background: var(--bg);
     border-radius: 100px;
@@ -350,9 +277,8 @@
 
   .device.phone .screen-wrap {
     width: 100%; height: 100%;
-    border-radius: 22px;
-    overflow: hidden; position: relative;
-    background: #000;
+    border-radius: 22px; overflow: hidden;
+    position: relative; background: #000;
   }
 
   .screen-img {
@@ -361,7 +287,6 @@
     display: block;
   }
 
-  /* Fallback CSS screens */
   .screen-fallback {
     width: 100%; height: 100%;
     display: flex; flex-direction: column;
@@ -543,7 +468,109 @@
   }
   .card:hover .card-link .arr { transform: translate(2px, -2px); }
 
-  /* ═══════════════════════ FIXED CTA BAR ═══════════════════════ */
+  /* ─── CAPACITY (now near footer) ─── */
+
+  .capacity-section {
+    padding: 64px 0 80px;
+    border-top: 1px solid var(--rule);
+  }
+
+  @media (max-width: 720px) {
+    .capacity-section { padding: 48px 0 56px; }
+  }
+
+  .capacity {
+    max-width: 540px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .capacity-eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .capacity-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  .capacity-track {
+    height: 8px;
+    background: var(--surface);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 18px;
+    border: 1px solid var(--rule);
+  }
+
+  .capacity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-soft) 0%, var(--accent) 100%);
+    border-radius: 100px;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capacity-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.3) 50%,
+      transparent 100%);
+    animation: capacity-shine 2.8s ease-in-out infinite;
+  }
+
+  @keyframes capacity-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  .capacity-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .capacity-count {
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .capacity-count .sep,
+  .capacity-count .total { color: var(--ink-mute); font-weight: 400; }
+
+  .capacity-status {
+    color: var(--ink-mute);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+
+  .capacity-status.warn {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ─── FIXED CTA BAR ─── */
 
   .cta-bar {
     position: fixed;
@@ -552,29 +579,21 @@
     border-top: 1px solid var(--rule);
     padding: 14px 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
-  :root[data-theme="dark"] .cta-bar {
-    background: rgba(20, 17, 13, 0.92);
-  }
-
-  :root[data-theme="light"] .cta-bar {
-    background: rgba(251, 249, 243, 0.92);
-  }
+  :root[data-theme="dark"] .cta-bar { background: rgba(20, 17, 13, 0.92); }
+  :root[data-theme="light"] .cta-bar { background: rgba(251, 249, 243, 0.92); }
 
   .cta-bar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 16px;
   }
 
   .cta-bar-text {
     font-family: 'Archivo', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 13px; font-weight: 500;
     color: var(--ink-soft);
     letter-spacing: 0.02em;
   }
@@ -593,19 +612,14 @@
 
   .cta {
     font-family: 'Archivo', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 14px 22px;
-    border-radius: 100px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 14px 22px; border-radius: 100px;
     cursor: pointer;
     transition: all .2s ease;
     white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: inline-flex; align-items: center;
+    justify-content: center; gap: 8px;
   }
 
   @media (max-width: 720px) {
@@ -637,21 +651,17 @@
     transform: translateY(-1px);
   }
 
-  /* ═══════════════════════ MODAL ═══════════════════════ */
+  /* ─── MODAL (unchanged from v3, will rework next) ─── */
 
   .modal-backdrop {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: var(--backdrop);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     padding: 24px;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 0; pointer-events: none;
     transition: opacity .25s ease;
   }
 
@@ -664,10 +674,8 @@
     background: var(--surface);
     border: 1px solid var(--rule);
     border-radius: 16px;
-    width: 100%;
-    max-width: 520px;
-    max-height: 92vh;
-    overflow-y: auto;
+    width: 100%; max-width: 520px;
+    max-height: 92vh; overflow-y: auto;
     transform: translateY(20px) scale(0.98);
     transition: transform .25s ease;
     position: relative;
@@ -692,9 +700,7 @@
     color: var(--ink);
   }
 
-  .modal-content {
-    padding: 40px 32px 32px;
-  }
+  .modal-content { padding: 40px 32px 32px; }
 
   @media (max-width: 480px) {
     .modal-content { padding: 32px 24px 24px; }
@@ -702,10 +708,8 @@
 
   .modal-eyebrow {
     font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 12px;
   }
@@ -713,8 +717,7 @@
   .modal-title {
     font-family: 'Archivo', sans-serif;
     font-size: clamp(24px, 4vw, 30px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 700; letter-spacing: -0.02em;
     line-height: 1.1;
     color: var(--ink);
     margin-bottom: 8px;
@@ -728,29 +731,21 @@
     line-height: 1.55;
   }
 
-  .form-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+  .form-grid { display: flex; flex-direction: column; gap: 18px; }
 
   .field { display: flex; flex-direction: column; gap: 6px; }
 
   .field label {
     font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-mute);
   }
 
   .field label .opt {
     color: var(--ink-mute);
-    text-transform: none;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    font-size: 11px;
+    text-transform: none; font-weight: 400;
+    letter-spacing: 0.02em; font-size: 11px;
     margin-left: 6px;
   }
 
@@ -763,21 +758,16 @@
     padding: 13px 14px;
     color: var(--ink);
     font-family: 'Inter', sans-serif;
-    font-size: 14.5px;
-    line-height: 1.4;
+    font-size: 14.5px; line-height: 1.4;
     transition: border-color .2s, background .2s;
     outline: none;
   }
 
   .field input:focus,
-  .field textarea:focus {
-    border-color: var(--accent);
-  }
+  .field textarea:focus { border-color: var(--accent); }
 
   .field input::placeholder,
-  .field textarea::placeholder {
-    color: var(--ink-mute);
-  }
+  .field textarea::placeholder { color: var(--ink-mute); }
 
   .field textarea { resize: vertical; min-height: 80px; }
 
@@ -786,25 +776,17 @@
     background: var(--accent);
     color: #1a1612;
     font-family: 'Archivo', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 16px 24px;
-    border-radius: 100px;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 16px 24px; border-radius: 100px;
     cursor: pointer;
     transition: background .2s, transform .15s, opacity .2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: inline-flex; align-items: center;
+    justify-content: center; gap: 8px;
   }
   .submit-btn:hover { background: var(--accent-soft); }
   .submit-btn:active { transform: scale(0.98); }
-  .submit-btn:disabled {
-    opacity: 0.6; cursor: wait;
-    background: var(--accent);
-  }
+  .submit-btn:disabled { opacity: 0.6; cursor: wait; background: var(--accent); }
 
   .submit-spinner {
     width: 14px; height: 14px;
@@ -836,8 +818,6 @@
     text-align: center;
   }
 
-  /* SUCCESS SCREEN */
-
   .success-screen {
     display: none;
     text-align: center;
@@ -848,9 +828,7 @@
   .form-grid.hidden { display: none; }
   .modal-content.success-mode .modal-eyebrow,
   .modal-content.success-mode .modal-title,
-  .modal-content.success-mode .modal-desc {
-    display: none;
-  }
+  .modal-content.success-mode .modal-desc { display: none; }
 
   .success-mark {
     width: 56px; height: 56px;
@@ -858,16 +836,13 @@
     background: var(--accent);
     color: #1a1612;
     margin: 0 auto 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   }
 
   .success-title {
     font-family: 'Archivo', sans-serif;
     font-size: clamp(22px, 4vw, 28px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 700; letter-spacing: -0.02em;
     margin-bottom: 12px;
     color: var(--ink);
     text-transform: uppercase;
@@ -879,8 +854,7 @@
     line-height: 1.55;
     margin-bottom: 28px;
     max-width: 380px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto; margin-right: auto;
   }
 
   .success-close {
@@ -888,10 +862,8 @@
     color: var(--ink);
     border: 1px solid var(--rule-strong);
     font-family: 'Archivo', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
     padding: 13px 28px;
     border-radius: 100px;
     cursor: pointer;
@@ -899,11 +871,11 @@
   }
   .success-close:hover { border-color: var(--ink); }
 
-  /* FOOTER */
+  /* ─── FOOTER ─── */
 
   footer {
     border-top: 1px solid var(--rule);
-    padding: 28px 0 100px; /* extra bottom space so sticky CTA bar doesn't overlap on scroll */
+    padding: 28px 0 100px; /* extra space so sticky CTA bar doesn't cover */
   }
 
   .footer-inner {
@@ -933,32 +905,6 @@
       wetwo<span class="dot">.</span>studio<span class="crumb"> / bars</span>
     </a>
     <div class="controls">
-
-      <!--
-        ═══════════════════════════════════════════════════════════
-        CAPACITY WIDGET — EDIT NUMBERS HERE
-        ═══════════════════════════════════════════════════════════
-        - Change data-booked to current confirmed projects this month
-        - Change data-limit to total monthly capacity
-        - Month name auto-detects from system date
-        - On 1st of new month, set data-booked back to 0
-      -->
-      <div class="capacity"
-           id="capacity"
-           data-booked="7"
-           data-limit="10"
-           title="Monthly project capacity">
-        <div class="capacity-row">
-          <span class="capacity-month" id="capacityMonth">December · 2026</span>
-          <span class="capacity-count">
-            <span id="capacityBooked">7</span><span class="lim">/<span id="capacityLimit">10</span></span>
-          </span>
-        </div>
-        <div class="capacity-bar">
-          <div class="capacity-fill" id="capacityFill" style="width: 70%;"></div>
-        </div>
-        <div class="capacity-status" id="capacityStatus">3 spots left this month</div>
-      </div>
 
       <div class="toggle-group" role="tablist" aria-label="Preview format">
         <button class="toggle-btn active" data-view="laptop" aria-pressed="true" title="Desktop preview">
@@ -998,103 +944,153 @@
   <div class="container">
     <div class="cards-grid">
 
-      <a href="https://starr.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
-        class="card" data-card
-        data-shot-desktop="screenshots/starr-desktop.png"
-        data-shot-mobile="screenshots/starr-mobile.png">
-        <div class="device laptop" data-device>
-          <div class="browser-bar">
-            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-            <span class="browser-url">starr.wetwo.studio</span>
-          </div>
-          <div class="screen-wrap" data-screen-wrap>
-            <div class="screen-fallback fallback-starr">
-              <div class="marquee">★ K-POP · RESERVE · OPEN TILL 2 AM ★</div>
-              <div class="wordmark">233 STARR</div>
-              <div class="sub">Karaoke &amp; Eats</div>
-              <div class="pills">
-                <span class="pill">Private Rooms</span>
-                <span class="pill">K-Pop</span>
-                <span class="pill">BYOB</span>
+      <div class="card-wrap">
+        <a href="https://starr.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
+          class="card" data-card
+          data-shot-desktop="screenshots/starr-desktop.png"
+          data-shot-mobile="screenshots/starr-mobile.png">
+          <div class="device laptop" data-device>
+            <div class="browser-bar">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+              <span class="browser-url">starr.wetwo.studio</span>
+            </div>
+            <div class="screen-wrap" data-screen-wrap>
+              <div class="screen-fallback fallback-starr">
+                <div class="marquee">★ K-POP · RESERVE · OPEN TILL 2 AM ★</div>
+                <div class="wordmark">233 STARR</div>
+                <div class="sub">Karaoke &amp; Eats</div>
+                <div class="pills">
+                  <span class="pill">Private Rooms</span>
+                  <span class="pill">K-Pop</span>
+                  <span class="pill">BYOB</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <div class="card-num">01 / Karaoke lounge</div>
-          <h3 class="card-title">233 Starr</h3>
-          <p class="card-tag">Brooklyn karaoke &amp; eats</p>
-          <span class="card-link">
-            Open walkthrough
-            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <a href="https://estelle.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
-        class="card" data-card
-        data-shot-desktop="screenshots/estelle-desktop.png"
-        data-shot-mobile="screenshots/estelle-mobile.png">
-        <div class="device laptop" data-device>
-          <div class="browser-bar">
-            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-            <span class="browser-url">estelle.wetwo.studio</span>
+          <div class="card-meta">
+            <div class="card-num">01 / Karaoke lounge</div>
+            <h3 class="card-title">233 Starr</h3>
+            <p class="card-tag">Brooklyn karaoke &amp; eats</p>
+            <span class="card-link">
+              Open walkthrough
+              <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
+            </span>
           </div>
-          <div class="screen-wrap" data-screen-wrap>
-            <div class="screen-fallback fallback-estelle">
-              <div class="neon-frame">Estelle</div>
-              <div class="karaoke-text">Karaoke Bar</div>
-              <div class="neon-pills">
-                <span class="neon-pill">Live till 4 AM</span>
-                <span class="neon-pill">Private Rooms</span>
+        </a>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card-divider">
+          <span class="line"></span>
+          <span class="num">02</span>
+          <span class="line"></span>
+        </div>
+        <a href="https://estelle.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
+          class="card" data-card
+          data-shot-desktop="screenshots/estelle-desktop.png"
+          data-shot-mobile="screenshots/estelle-mobile.png">
+          <div class="device laptop" data-device>
+            <div class="browser-bar">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+              <span class="browser-url">estelle.wetwo.studio</span>
+            </div>
+            <div class="screen-wrap" data-screen-wrap>
+              <div class="screen-fallback fallback-estelle">
+                <div class="neon-frame">Estelle</div>
+                <div class="karaoke-text">Karaoke Bar</div>
+                <div class="neon-pills">
+                  <span class="neon-pill">Live till 4 AM</span>
+                  <span class="neon-pill">Private Rooms</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <div class="card-num">02 / Karaoke bar</div>
-          <h3 class="card-title">Estelle</h3>
-          <p class="card-tag">Late-night neon karaoke</p>
-          <span class="card-link">
-            Open walkthrough
-            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <a href="https://platinum.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
-        class="card" data-card
-        data-shot-desktop="screenshots/platinum-desktop.png"
-        data-shot-mobile="screenshots/platinum-mobile.png">
-        <div class="device laptop" data-device>
-          <div class="browser-bar">
-            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-            <span class="browser-url">platinum.wetwo.studio</span>
+          <div class="card-meta">
+            <div class="card-num">02 / Karaoke bar</div>
+            <h3 class="card-title">Estelle</h3>
+            <p class="card-tag">Late-night neon karaoke</p>
+            <span class="card-link">
+              Open walkthrough
+              <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
+            </span>
           </div>
-          <div class="screen-wrap" data-screen-wrap>
-            <div class="screen-fallback fallback-platinum">
-              <div class="stamp">N · Y · C</div>
-              <div class="pt-mark">Platinum</div>
-              <div class="pt-sub">a karaoke lounge</div>
-              <div class="pt-meta">
-                <span>Members</span><span class="sep">·</span>
-                <span>Private</span><span class="sep">·</span>
-                <span>Late</span>
+        </a>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card-divider">
+          <span class="line"></span>
+          <span class="num">03</span>
+          <span class="line"></span>
+        </div>
+        <a href="https://platinum.wetwo.studio/guide.html" target="_blank" rel="noopener noreferrer"
+          class="card" data-card
+          data-shot-desktop="screenshots/platinum-desktop.png"
+          data-shot-mobile="screenshots/platinum-mobile.png">
+          <div class="device laptop" data-device>
+            <div class="browser-bar">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+              <span class="browser-url">platinum.wetwo.studio</span>
+            </div>
+            <div class="screen-wrap" data-screen-wrap>
+              <div class="screen-fallback fallback-platinum">
+                <div class="stamp">N · Y · C</div>
+                <div class="pt-mark">Platinum</div>
+                <div class="pt-sub">a karaoke lounge</div>
+                <div class="pt-meta">
+                  <span>Members</span><span class="sep">·</span>
+                  <span>Private</span><span class="sep">·</span>
+                  <span>Late</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <div class="card-num">03 / Premium lounge</div>
-          <h3 class="card-title">Platinum</h3>
-          <p class="card-tag">A premium karaoke lounge</p>
-          <span class="card-link">
-            Open walkthrough
-            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
-          </span>
-        </div>
-      </a>
+          <div class="card-meta">
+            <div class="card-num">03 / Premium lounge</div>
+            <h3 class="card-title">Platinum</h3>
+            <p class="card-tag">A premium karaoke lounge</p>
+            <span class="card-link">
+              Open walkthrough
+              <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11L11 5"/><path d="M5.5 5h5.5v5.5"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CAPACITY (moved here, before footer) ═══════ -->
+<section class="capacity-section">
+  <div class="container">
+    <!--
+      ═══════════════════════════════════════════════════════════
+      CAPACITY WIDGET — EDIT NUMBERS HERE
+      ═══════════════════════════════════════════════════════════
+      - Change data-booked to current confirmed projects this month
+      - Change data-limit to total monthly capacity
+      - Month name auto-detects from system date
+      - On 1st of new month, set data-booked back to 0
+    -->
+    <div class="capacity"
+         id="capacity"
+         data-booked="7"
+         data-limit="10">
+      <div class="capacity-eyebrow" id="capacityEyebrow">Studio capacity</div>
+      <h2 class="capacity-title">
+        We take a limited number of projects each month <br>
+        to keep every site hand-crafted.
+      </h2>
+      <div class="capacity-track">
+        <div class="capacity-fill" id="capacityFill" style="width: 70%;"></div>
+      </div>
+      <div class="capacity-meta">
+        <span class="capacity-count">
+          <span id="capacityBooked">7</span><span class="sep">/</span><span class="total" id="capacityLimit">10</span> projects booked
+        </span>
+        <span class="capacity-status" id="capacityStatus">3 spots left this month</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1106,7 +1102,7 @@
   </div>
 </footer>
 
-<!-- ═══════════════════════ FIXED CTA BAR ═══════════════════════ -->
+<!-- FIXED CTA BAR -->
 <div class="cta-bar">
   <div class="container cta-bar-inner">
     <div class="cta-bar-text">Ready to start?</div>
@@ -1121,7 +1117,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════ MODAL ═══════════════════════ -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
 
@@ -1173,7 +1169,6 @@
         <p class="privacy-note">By submitting you agree to receive a reply. No spam, no lists, no upsell.</p>
       </form>
 
-      <!-- SUCCESS -->
       <div class="success-screen" id="successScreen">
         <div class="success-mark">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1190,13 +1185,11 @@
 </div>
 
 <script>
-  /* ─────────  TELEGRAM CONFIG  ───────── */
-  /* Note: token is exposed in client-side code. For production-grade safety,
-     route through a Cloudflare Worker (see deploy notes). */
+  /* ───── TELEGRAM CONFIG ───── */
   const TG_BOT_TOKEN = '8325119822:AAG3o98A8jjiRV0fXSI9ZsHiroHK3kx_mHE';
   const TG_CHAT_ID = '5432379925';
 
-  /* ─────────  CAPACITY WIDGET  ───────── */
+  /* ───── CAPACITY WIDGET ───── */
   (function initCapacity() {
     const el = document.getElementById('capacity');
     if (!el) return;
@@ -1206,7 +1199,6 @@
     const left = Math.max(0, limit - booked);
     const pct = Math.min(100, Math.round((booked / limit) * 100));
 
-    // Month name from system date (auto-updates each month)
     const monthNames = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
@@ -1216,16 +1208,15 @@
     const year = now.getFullYear();
     const nextMonthName = monthNames[(now.getMonth() + 1) % 12];
 
-    document.getElementById('capacityMonth').textContent = monthName + ' \u00b7 ' + year;
+    document.getElementById('capacityEyebrow').textContent =
+      monthName + ' \u00b7 ' + year;
     document.getElementById('capacityBooked').textContent = booked;
     document.getElementById('capacityLimit').textContent = limit;
 
-    // Animate fill on load
     const fill = document.getElementById('capacityFill');
     fill.style.width = '0%';
     setTimeout(() => { fill.style.width = pct + '%'; }, 200);
 
-    // Status text logic
     const status = document.getElementById('capacityStatus');
     if (left === 0) {
       status.textContent = 'Fully booked \u00b7 Now booking ' + nextMonthName;
@@ -1241,7 +1232,7 @@
     }
   })();
 
-  /* ─────────  THEME  ───────── */
+  /* ───── THEME ───── */
   const root = document.documentElement;
   const themeBtns = document.querySelectorAll('.toggle-btn[data-theme]');
 
@@ -1266,7 +1257,7 @@
     });
   });
 
-  /* ─────────  VIEW (laptop / phone)  ───────── */
+  /* ───── VIEW (laptop / phone) ───── */
   const viewBtns = document.querySelectorAll('.toggle-btn[data-view]');
   const cards = document.querySelectorAll('[data-card]');
 
@@ -1319,7 +1310,7 @@
     btn.addEventListener('click', () => setView(btn.dataset.view));
   });
 
-  /* ─────────  MODAL  ───────── */
+  /* ───── MODAL ───── */
   const backdrop = document.getElementById('modalBackdrop');
   const modalClose = document.getElementById('modalClose');
   const modalContent = document.getElementById('modalContent');
@@ -1356,7 +1347,6 @@
     modalDesc.textContent = cfg.desc;
     formKind.value = cfg.kind;
 
-    // reset form state
     formError.classList.remove('visible');
     formError.textContent = '';
     successScreen.classList.remove('visible');
@@ -1368,7 +1358,6 @@
     backdrop.classList.add('open');
     document.body.classList.add('modal-open');
 
-    // focus first field after animation
     setTimeout(() => {
       const firstInput = form.querySelector('input');
       if (firstInput) firstInput.focus();
@@ -1396,7 +1385,7 @@
     if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
   });
 
-  /* ─────────  FORM SUBMISSION  ───────── */
+  /* ───── FORM SUBMIT ───── */
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -1409,7 +1398,6 @@
       message: form.message.value.trim()
     };
 
-    // validation
     if (!data.name || !data.phone || !data.email) {
       formError.textContent = 'Please fill in name, phone and email.';
       formError.classList.add('visible');
@@ -1426,7 +1414,6 @@
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
-    // build telegram message
     const text = [
       '*\u{1F195} New lead \u2014 ' + data.kind + '*',
       '',
@@ -1451,10 +1438,8 @@
       });
 
       const result = await response.json();
-
       if (!result.ok) throw new Error(result.description || 'Telegram API error');
 
-      // success
       formGrid.classList.add('hidden');
       modalContent.classList.add('success-mode');
       successScreen.classList.add('visible');
