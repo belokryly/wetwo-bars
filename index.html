@@ -47,9 +47,6 @@
     flex-direction: column;
   }
 
-  .display { font-family: 'Anton', 'Archivo', sans-serif; font-weight: 400; }
-  .heavy { font-family: 'Archivo', sans-serif; font-weight: 700; }
-
   a { color: inherit; text-decoration: none; }
   button { font: inherit; cursor: pointer; }
   img { display: block; max-width: 100%; height: auto; }
@@ -61,7 +58,6 @@
     padding: 0 24px;
   }
 
-  /* HEADER */
   header {
     padding: 24px 0;
     border-bottom: 1px solid var(--rule);
@@ -124,7 +120,6 @@
     .toggle-btn { padding: 7px 10px; }
   }
 
-  /* INTRO */
   .intro {
     padding: 88px 0 56px;
     max-width: 760px;
@@ -175,7 +170,6 @@
     margin-top: 4px;
   }
 
-  /* CARDS */
   .cards { flex: 1; padding-bottom: 96px; }
 
   .cards-grid {
@@ -207,7 +201,6 @@
     position: relative;
   }
 
-  /* Laptop frame */
   .device.laptop {
     aspect-ratio: 16 / 10.5;
     background: var(--surface);
@@ -272,7 +265,6 @@
     background: #000;
   }
 
-  /* Phone frame */
   .device.phone {
     aspect-ratio: 9 / 18;
     max-width: 240px;
@@ -308,7 +300,6 @@
     background: #000;
   }
 
-  /* Real screenshot — when file is present */
   .screen-img {
     width: 100%;
     height: 100%;
@@ -317,7 +308,6 @@
     display: block;
   }
 
-  /* CSS fallback screens — shown until you replace with real screenshots */
   .screen-fallback {
     width: 100%;
     height: 100%;
@@ -331,7 +321,6 @@
     overflow: hidden;
   }
 
-  /* Starr fallback */
   .fallback-starr {
     background:
       radial-gradient(ellipse at 50% 30%, rgba(212,166,85,0.25) 0%, transparent 60%),
@@ -395,7 +384,6 @@
     white-space: nowrap;
   }
 
-  /* Estelle fallback — neon */
   .fallback-estelle {
     background:
       radial-gradient(circle at 30% 20%, rgba(255,46,196,0.25) 0%, transparent 50%),
@@ -471,7 +459,6 @@
     font-weight: 500;
   }
 
-  /* Platinum fallback */
   .fallback-platinum {
     background:
       radial-gradient(ellipse at 50% 0%, rgba(220,220,235,0.08) 0%, transparent 60%),
@@ -538,10 +525,7 @@
     color: rgba(232,230,240,0.25);
   }
 
-  /* Card meta */
-  .card-meta {
-    padding: 0 4px;
-  }
+  .card-meta { padding: 0 4px; }
 
   .card-num {
     font-family: 'Archivo', sans-serif;
@@ -574,7 +558,7 @@
   .card-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-family: 'Archivo', sans-serif;
     font-size: 12.5px;
     font-weight: 500;
@@ -592,10 +576,18 @@
     border-bottom-color: var(--accent);
   }
 
-  .card-link .arr { transition: transform .2s; }
-  .card:hover .card-link .arr { transform: translate(2px, -2px); }
+  /* Clean SVG arrow — replaces ↗ emoji */
+  .card-link .arr {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    transition: transform .2s ease;
+  }
 
-  /* FOOTER */
+  .card:hover .card-link .arr {
+    transform: translate(2px, -2px);
+  }
+
   footer {
     border-top: 1px solid var(--rule);
     padding: 28px 0;
@@ -668,9 +660,8 @@
   <div class="container">
     <div class="cards-grid">
 
-      <!-- ─────  STARR  ───── -->
       <a
-        href="https://by-we2-233-starr.vercel.app/guide.html"
+        href="https://starr.wetwo.studio/guide.html"
         target="_blank" rel="noopener"
         class="card"
         data-card
@@ -682,7 +673,7 @@
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
-            <span class="browser-url">233starr.com</span>
+            <span class="browser-url">starr.wetwo.studio</span>
           </div>
           <div class="screen-wrap" data-screen-wrap>
             <div class="screen-fallback fallback-starr">
@@ -701,13 +692,18 @@
           <div class="card-num">01 / Karaoke lounge</div>
           <h3 class="card-title">233 Starr</h3>
           <p class="card-tag">Brooklyn karaoke &amp; eats</p>
-          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+          <span class="card-link">
+            Open walkthrough
+            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 11L11 5"/>
+              <path d="M5.5 5h5.5v5.5"/>
+            </svg>
+          </span>
         </div>
       </a>
 
-      <!-- ─────  ESTELLE  ───── -->
       <a
-        href="https://by-we2-estelle-karaoke.vercel.app/guide.html"
+        href="https://estelle.wetwo.studio/guide.html"
         target="_blank" rel="noopener"
         class="card"
         data-card
@@ -719,7 +715,7 @@
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
-            <span class="browser-url">estellekaraokebar.com</span>
+            <span class="browser-url">estelle.wetwo.studio</span>
           </div>
           <div class="screen-wrap" data-screen-wrap>
             <div class="screen-fallback fallback-estelle">
@@ -736,13 +732,18 @@
           <div class="card-num">02 / Karaoke bar</div>
           <h3 class="card-title">Estelle</h3>
           <p class="card-tag">Late-night neon karaoke</p>
-          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+          <span class="card-link">
+            Open walkthrough
+            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 11L11 5"/>
+              <path d="M5.5 5h5.5v5.5"/>
+            </svg>
+          </span>
         </div>
       </a>
 
-      <!-- ─────  PLATINUM  ───── -->
       <a
-        href="https://by-we2-platinum-nyc.vercel.app/guide.html"
+        href="https://platinum.wetwo.studio/guide.html"
         target="_blank" rel="noopener"
         class="card"
         data-card
@@ -754,7 +755,7 @@
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
-            <span class="browser-url">platinum.nyc</span>
+            <span class="browser-url">platinum.wetwo.studio</span>
           </div>
           <div class="screen-wrap" data-screen-wrap>
             <div class="screen-fallback fallback-platinum">
@@ -775,7 +776,13 @@
           <div class="card-num">03 / Premium lounge</div>
           <h3 class="card-title">Platinum</h3>
           <p class="card-tag">A premium karaoke lounge</p>
-          <span class="card-link">Open walkthrough <span class="arr">↗</span></span>
+          <span class="card-link">
+            Open walkthrough
+            <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 11L11 5"/>
+              <path d="M5.5 5h5.5v5.5"/>
+            </svg>
+          </span>
         </div>
       </a>
 
@@ -791,7 +798,6 @@
 </footer>
 
 <script>
-  /* ─────────  THEME  ───────── */
   const root = document.documentElement;
   const themeBtns = document.querySelectorAll('.toggle-btn[data-theme]');
 
@@ -816,7 +822,6 @@
     });
   });
 
-  /* ─────────  VIEW (desktop / mobile)  ───────── */
   const viewBtns = document.querySelectorAll('.toggle-btn[data-view]');
   const cards = document.querySelectorAll('[data-card]');
 
@@ -833,10 +838,7 @@
         browserBar.style.display = v === 'phone' ? 'none' : '';
       }
 
-      // Swap screenshot if file path is provided
       const shotPath = card.dataset[v === 'phone' ? 'shotMobile' : 'shotDesktop'];
-
-      // Try to use the image; fall back to existing CSS preview if it fails to load
       const existingImg = screenWrap.querySelector('.screen-img');
       const existingFallback = screenWrap.querySelector('.screen-fallback');
 
@@ -853,7 +855,6 @@
         };
 
         img.onerror = () => {
-          // image not found — keep CSS fallback visible
           if (existingImg) existingImg.remove();
           if (existingFallback) existingFallback.style.display = '';
         };
