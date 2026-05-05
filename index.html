@@ -61,9 +61,7 @@
     flex-direction: column;
   }
 
-  body.modal-open {
-    overflow: hidden;
-  }
+  body.modal-open { overflow: hidden; }
 
   a { color: inherit; text-decoration: none; }
   button { font: inherit; cursor: pointer; border: none; background: transparent; color: inherit; }
@@ -119,10 +117,7 @@
 
   /* ─── INTRO ─── */
   .intro { padding: 88px 0 56px; max-width: 760px; }
-
-  @media (max-width: 720px) {
-    .intro { padding: 56px 0 40px; }
-  }
+  @media (max-width: 720px) { .intro { padding: 56px 0 40px; } }
 
   .eyebrow {
     font-family: 'Archivo', sans-serif;
@@ -133,9 +128,7 @@
     display: inline-flex; align-items: center; gap: 10px;
   }
 
-  .eyebrow::before {
-    content: ''; width: 24px; height: 1px; background: var(--accent);
-  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
 
   h1 {
     font-family: 'Archivo', sans-serif;
@@ -166,10 +159,7 @@
   }
 
   @media (max-width: 640px) {
-    .cards-grid {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
+    .cards-grid { grid-template-columns: 1fr; gap: 0; }
     .card-divider { display: flex; }
     .card-wrap:not(:first-child) { padding-top: 56px; }
     .card-wrap { padding-bottom: 56px; }
@@ -470,16 +460,9 @@
     padding: 64px 0 80px;
     border-top: 1px solid var(--rule);
   }
+  @media (max-width: 720px) { .capacity-section { padding: 48px 0 56px; } }
 
-  @media (max-width: 720px) {
-    .capacity-section { padding: 48px 0 56px; }
-  }
-
-  .capacity {
-    max-width: 540px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  .capacity { max-width: 540px; margin: 0 auto; text-align: center; }
 
   .capacity-eyebrow {
     font-family: 'Archivo', sans-serif;
@@ -519,8 +502,7 @@
   }
 
   .capacity-fill::after {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(90deg,
       transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
     animation: capacity-shine 2.8s ease-in-out infinite;
@@ -539,14 +521,12 @@
   }
 
   .capacity-count { color: var(--ink); font-weight: 600; letter-spacing: 0.04em; }
-  .capacity-count .sep,
-  .capacity-count .total { color: var(--ink-mute); font-weight: 400; }
+  .capacity-count .sep, .capacity-count .total { color: var(--ink-mute); font-weight: 400; }
 
   .capacity-status { color: var(--ink-mute); font-size: 12.5px; letter-spacing: 0.04em; }
   .capacity-status.warn { color: var(--accent); font-weight: 500; }
 
   /* ─── FIXED CTA BAR ─── */
-
   .cta-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -561,25 +541,17 @@
   :root[data-theme="dark"] .cta-bar { background: rgba(20, 17, 13, 0.92); }
   :root[data-theme="light"] .cta-bar { background: rgba(251, 249, 243, 0.92); }
 
-  .cta-bar-inner {
-    display: flex; align-items: center;
-    justify-content: space-between; gap: 16px;
-  }
+  .cta-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 
   .cta-bar-text {
     font-family: 'Archivo', sans-serif;
     font-size: 13px; font-weight: 500;
     color: var(--ink-soft); letter-spacing: 0.02em;
   }
-
   @media (max-width: 720px) { .cta-bar-text { display: none; } }
 
-  .cta-buttons {
-    display: flex; gap: 10px; flex: 1; justify-content: flex-end;
-  }
-  @media (max-width: 720px) {
-    .cta-buttons { flex: 1; justify-content: stretch; }
-  }
+  .cta-buttons { display: flex; gap: 10px; flex: 1; justify-content: flex-end; }
+  @media (max-width: 720px) { .cta-buttons { flex: 1; justify-content: stretch; } }
 
   .cta {
     font-family: 'Archivo', sans-serif;
@@ -609,13 +581,9 @@
     background: transparent; color: var(--ink);
     border: 1px solid var(--rule-strong);
   }
-  .cta-secondary:hover {
-    border-color: var(--ink);
-    transform: translateY(-1px);
-  }
+  .cta-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
 
-  /* ═══════════════ MODAL — REWORKED ═══════════════ */
-
+  /* ─── MODAL — 3-STEP WIZARD ─── */
   .modal-backdrop {
     position: fixed; inset: 0;
     background: var(--backdrop);
@@ -628,12 +596,8 @@
     transition: opacity .3s ease;
   }
 
-  .modal-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
 
-  /* DESKTOP: centered */
   .modal {
     background: var(--surface);
     border: 1px solid var(--rule);
@@ -641,8 +605,7 @@
     width: 100%;
     max-width: 520px;
     max-height: 92vh;
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     transform: translateY(20px) scale(0.97);
     transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
@@ -650,27 +613,14 @@
     box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
   }
 
-  .modal-backdrop.open .modal {
-    transform: translateY(0) scale(1);
-  }
+  .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
 
-  /* MOBILE: bottom sheet */
   @media (max-width: 600px) {
-    .modal-backdrop {
-      padding: 0;
-      align-items: flex-end;
-    }
-    .modal {
-      max-height: 92vh;
-      border-radius: 20px 20px 0 0;
-      transform: translateY(100%);
-    }
-    .modal-backdrop.open .modal {
-      transform: translateY(0);
-    }
+    .modal-backdrop { padding: 0; align-items: flex-end; }
+    .modal { max-height: 92vh; border-radius: 20px 20px 0 0; transform: translateY(100%); }
+    .modal-backdrop.open .modal { transform: translateY(0); }
   }
 
-  /* Drag handle on mobile */
   .modal-handle {
     display: none;
     width: 40px; height: 4px;
@@ -693,19 +643,10 @@
     transition: background .2s, color .2s;
     z-index: 10;
   }
-  .modal-close:hover {
-    background: var(--rule);
-    color: var(--ink);
-  }
+  .modal-close:hover { background: var(--rule); color: var(--ink); }
 
-  /* Header — fixed */
-  .modal-head {
-    padding: 36px 32px 24px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 600px) {
-    .modal-head { padding: 32px 24px 20px; }
-  }
+  .modal-head { padding: 36px 32px 24px; flex-shrink: 0; }
+  @media (max-width: 600px) { .modal-head { padding: 32px 24px 20px; } }
 
   .modal-eyebrow {
     font-family: 'Archivo', sans-serif;
@@ -731,24 +672,16 @@
     line-height: 1.5;
   }
 
-  /* Step progress */
   .step-progress {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     padding: 0 32px 16px;
     flex-shrink: 0;
   }
-  @media (max-width: 600px) {
-    .step-progress { padding: 0 24px 16px; }
-  }
+  @media (max-width: 600px) { .step-progress { padding: 0 24px 16px; } }
 
-  .step-dots {
-    display: flex; gap: 6px; flex: 1;
-  }
+  .step-dots { display: flex; gap: 6px; flex: 1; }
   .step-dot {
-    flex: 1;
-    height: 3px;
+    flex: 1; height: 3px;
     background: var(--rule);
     border-radius: 100px;
     transition: background .4s ease;
@@ -765,7 +698,6 @@
     flex-shrink: 0;
   }
 
-  /* Steps wrapper — horizontal slider */
   .steps-wrapper {
     flex: 1;
     overflow: hidden;
@@ -788,17 +720,10 @@
     flex-shrink: 0;
     padding: 8px 32px 28px;
   }
-  @media (max-width: 600px) {
-    .step { padding: 8px 24px 24px; }
-  }
+  @media (max-width: 600px) { .step { padding: 8px 24px 24px; } }
 
-  .step-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+  .step-grid { display: flex; flex-direction: column; gap: 18px; }
 
-  /* Field */
   .field { display: flex; flex-direction: column; gap: 7px; }
 
   .field label {
@@ -815,9 +740,7 @@
     margin-left: 6px;
   }
 
-  .field .input-wrap {
-    position: relative;
-  }
+  .field .input-wrap { position: relative; }
 
   .field input,
   .field textarea {
@@ -828,7 +751,6 @@
     padding: 14px 16px;
     color: var(--ink);
     font-family: 'Inter', sans-serif;
-    /* 16px on mobile prevents iOS auto-zoom */
     font-size: 16px;
     line-height: 1.4;
     transition: border-color .2s, background .2s, box-shadow .2s;
@@ -848,15 +770,9 @@
   .field input::placeholder,
   .field textarea::placeholder { color: var(--ink-mute); }
 
-  .field textarea {
-    resize: vertical;
-    min-height: 96px;
-  }
+  .field textarea { resize: vertical; min-height: 96px; }
 
-  /* Phone country prefix */
-  .field.phone-field input {
-    padding-left: 50px;
-  }
+  .field.phone-field input { padding-left: 50px; }
   .phone-prefix {
     position: absolute;
     left: 16px; top: 50%;
@@ -867,9 +783,7 @@
     font-weight: 500;
     pointer-events: none;
   }
-  @media (min-width: 601px) {
-    .phone-prefix { font-size: 14.5px; }
-  }
+  @media (min-width: 601px) { .phone-prefix { font-size: 14.5px; } }
 
   .field-error {
     font-family: 'Inter', sans-serif;
@@ -882,24 +796,17 @@
   }
   .field.has-error .field-error { opacity: 1; }
   .field.has-error input,
-  .field.has-error textarea {
-    border-color: var(--error);
-  }
+  .field.has-error textarea { border-color: var(--error); }
 
-  /* Step actions (footer of modal) */
   .step-actions {
     padding: 20px 32px 28px;
     border-top: 1px solid var(--rule);
     background: var(--surface);
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 12px;
   }
-  @media (max-width: 600px) {
-    .step-actions { padding: 16px 24px 20px; }
-  }
+  @media (max-width: 600px) { .step-actions { padding: 16px 24px 20px; } }
 
   .btn {
     font-family: 'Archivo', sans-serif;
@@ -921,11 +828,7 @@
   }
   .btn-back:hover { color: var(--ink); }
   .btn-back svg { width: 14px; height: 14px; }
-
-  .btn-back:disabled {
-    opacity: 0;
-    pointer-events: none;
-  }
+  .btn-back:disabled { opacity: 0; pointer-events: none; }
 
   .btn-primary-form {
     background: var(--accent);
@@ -936,11 +839,7 @@
   }
   .btn-primary-form:hover { background: var(--accent-soft); }
   .btn-primary-form:active { transform: scale(0.98); }
-  .btn-primary-form:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
+  .btn-primary-form:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 
   .btn-spinner {
     width: 14px; height: 14px;
@@ -955,7 +854,6 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Privacy note inside step 3 */
   .privacy-note {
     margin-top: 6px;
     font-size: 11.5px;
@@ -964,7 +862,6 @@
     text-align: left;
   }
 
-  /* Form-wide error */
   .form-error {
     background: rgba(232, 117, 117, 0.1);
     border: 1px solid rgba(232, 117, 117, 0.25);
@@ -977,15 +874,12 @@
   }
   .form-error.visible { display: block; }
 
-  /* ─── Success screen ─── */
   .success-screen {
     display: none;
     text-align: center;
     padding: 24px 32px 32px;
   }
-  @media (max-width: 600px) {
-    .success-screen { padding: 24px 24px 24px; }
-  }
+  @media (max-width: 600px) { .success-screen { padding: 24px 24px 24px; } }
 
   .success-screen.visible { display: block; }
 
@@ -1031,7 +925,6 @@
   }
   .success-close:hover { border-color: var(--ink); }
 
-  /* When success — hide head/progress/steps/actions */
   .modal[data-state="success"] .modal-head,
   .modal[data-state="success"] .step-progress,
   .modal[data-state="success"] .steps-wrapper,
@@ -1054,10 +947,7 @@
     letter-spacing: 0.04em;
   }
 
-  .footer-inner a {
-    color: var(--ink-soft);
-    transition: color .2s;
-  }
+  .footer-inner a { color: var(--ink-soft); transition: color .2s; }
   .footer-inner a:hover { color: var(--accent); }
 </style>
 </head>
@@ -1069,7 +959,6 @@
       wetwo<span class="dot">.</span>studio<span class="crumb"> / bars</span>
     </a>
     <div class="controls">
-
       <div class="toggle-group" role="tablist" aria-label="Preview format">
         <button class="toggle-btn active" data-view="laptop" aria-pressed="true" title="Desktop preview">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
@@ -1080,7 +969,6 @@
           <span class="label">Mobile</span>
         </button>
       </div>
-
       <div class="toggle-group" role="tablist" aria-label="Theme">
         <button class="toggle-btn" data-theme="light" aria-pressed="false" title="Light theme">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -1089,7 +977,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
       </div>
-
     </div>
   </div>
 </header>
@@ -1225,10 +1112,9 @@
   </div>
 </section>
 
-<!-- CAPACITY -->
+<!-- CAPACITY — fetched from /capacity.json with fallback to data-attrs -->
 <section class="capacity-section">
   <div class="container">
-    <!-- ═══ EDIT NUMBERS HERE ═══ -->
     <div class="capacity"
          id="capacity"
          data-booked="7"
@@ -1258,41 +1144,31 @@
   </div>
 </footer>
 
-<!-- FIXED CTA BAR -->
 <div class="cta-bar">
   <div class="container cta-bar-inner">
     <div class="cta-bar-text">Ready to start?</div>
     <div class="cta-buttons">
-      <button class="cta cta-secondary" data-open-modal="full">
-        <span>Order a Full Site</span>
-      </button>
-      <button class="cta cta-primary" data-open-modal="demo">
-        <span>Order a Custom Demo</span>
-      </button>
+      <button class="cta cta-secondary" data-open-modal="full"><span>Order a Full Site</span></button>
+      <button class="cta cta-primary" data-open-modal="demo"><span>Order a Custom Demo</span></button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ MODAL — 3-STEP WIZARD ═══════════════ -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal" id="modal" data-state="form" role="dialog" aria-modal="true">
-
     <div class="modal-handle"></div>
-
     <button class="modal-close" id="modalClose" aria-label="Close">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
         <path d="M4 4l8 8M12 4l-8 8"/>
       </svg>
     </button>
 
-    <!-- HEAD -->
     <div class="modal-head">
       <div class="modal-eyebrow" id="modalEyebrow">Custom demo</div>
       <h2 class="modal-title" id="modalTitle">Order a custom demo</h2>
       <p class="modal-desc" id="modalDesc">After you submit, our manager will reach out. You can share your brief — or let us interpret your venue our own way.</p>
     </div>
 
-    <!-- PROGRESS -->
     <div class="step-progress">
       <div class="step-dots">
         <div class="step-dot active" data-step-dot="0"></div>
@@ -1302,14 +1178,13 @@
       <div class="step-label" id="stepLabel">Step 1 of 3</div>
     </div>
 
-    <!-- FORM STEPS -->
     <form id="leadForm" novalidate>
       <input type="hidden" name="kind" id="formKind" value="Custom Demo Request">
+      <input type="hidden" name="source" id="formSource" value="bars.wetwo.studio">
 
       <div class="steps-wrapper">
         <div class="steps-track" id="stepsTrack" data-step="0">
 
-          <!-- STEP 1 — Contact -->
           <div class="step">
             <div class="step-grid">
               <div class="field" data-field="name">
@@ -1319,7 +1194,6 @@
                 </div>
                 <div class="field-error">Please enter your name</div>
               </div>
-
               <div class="field phone-field" data-field="phone">
                 <label for="f-phone">Phone</label>
                 <div class="input-wrap">
@@ -1331,7 +1205,6 @@
             </div>
           </div>
 
-          <!-- STEP 2 — Details -->
           <div class="step">
             <div class="step-grid">
               <div class="field" data-field="email">
@@ -1341,7 +1214,6 @@
                 </div>
                 <div class="field-error">Please enter a valid email</div>
               </div>
-
               <div class="field" data-field="website">
                 <label for="f-site">Current website <span class="opt">(optional)</span></label>
                 <div class="input-wrap">
@@ -1351,7 +1223,6 @@
             </div>
           </div>
 
-          <!-- STEP 3 — Brief -->
           <div class="step">
             <div class="step-grid">
               <div class="field" data-field="message">
@@ -1360,9 +1231,7 @@
                   <textarea id="f-msg" name="message" rows="3" placeholder="Booking flow, menu page, the whole vibe — anything."></textarea>
                 </div>
               </div>
-
               <div class="form-error" id="formError"></div>
-
               <p class="privacy-note">By submitting you agree to receive a reply. No spam, no lists, no upsell.</p>
             </div>
           </div>
@@ -1370,7 +1239,6 @@
         </div>
       </div>
 
-      <!-- ACTIONS -->
       <div class="step-actions">
         <button type="button" class="btn btn-back" id="btnBack" disabled>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -1385,7 +1253,6 @@
       </div>
     </form>
 
-    <!-- SUCCESS -->
     <div class="success-screen" id="successScreen">
       <div class="success-mark">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1405,21 +1272,43 @@
   const TG_BOT_TOKEN = '8325119822:AAG3o98A8jjiRV0fXSI9ZsHiroHK3kx_mHE';
   const TG_CHAT_ID = '5432379925';
 
-  /* ───── CAPACITY WIDGET ───── */
-  (function initCapacity() {
+  /* ───── CAPACITY WIDGET — fetches /capacity.json with fallback ───── */
+  async function initCapacity() {
     const el = document.getElementById('capacity');
     if (!el) return;
 
-    const booked = parseInt(el.dataset.booked, 10) || 0;
-    const limit = parseInt(el.dataset.limit, 10) || 10;
+    // Try to fetch latest numbers from /capacity.json
+    let booked = parseInt(el.dataset.booked, 10) || 0;
+    let limit = parseInt(el.dataset.limit, 10) || 10;
+    let monthOverride = null;
+    let yearOverride = null;
+
+    try {
+      const res = await fetch('/capacity.json', { cache: 'no-cache' });
+      if (res.ok) {
+        const json = await res.json();
+        if (typeof json.booked === 'number') booked = json.booked;
+        if (typeof json.limit === 'number') limit = json.limit;
+        if (json.month) monthOverride = json.month;
+        if (json.year) yearOverride = json.year;
+      }
+    } catch (e) {
+      console.log('Capacity fallback to defaults:', e.message);
+    }
+
+    renderCapacity(booked, limit, monthOverride, yearOverride);
+  }
+
+  function renderCapacity(booked, limit, monthOverride, yearOverride) {
     const left = Math.max(0, limit - booked);
     const pct = Math.min(100, Math.round((booked / limit) * 100));
 
     const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const now = new Date();
-    const monthName = monthNames[now.getMonth()];
-    const year = now.getFullYear();
-    const nextMonthName = monthNames[(now.getMonth() + 1) % 12];
+    const monthIdx = monthOverride !== null ? monthOverride - 1 : now.getMonth();
+    const year = yearOverride !== null ? yearOverride : now.getFullYear();
+    const monthName = monthNames[monthIdx];
+    const nextMonthName = monthNames[(monthIdx + 1) % 12];
 
     document.getElementById('capacityEyebrow').textContent = monthName + ' \u00b7 ' + year;
     document.getElementById('capacityBooked').textContent = booked;
@@ -1430,6 +1319,7 @@
     setTimeout(() => { fill.style.width = pct + '%'; }, 200);
 
     const status = document.getElementById('capacityStatus');
+    status.classList.remove('warn');
     if (left === 0) {
       status.textContent = 'Fully booked \u00b7 Now booking ' + nextMonthName;
       status.classList.add('warn');
@@ -1442,7 +1332,9 @@
     } else {
       status.textContent = left + ' spots left this month';
     }
-  })();
+  }
+
+  initCapacity();
 
   /* ───── THEME ───── */
   const root = document.documentElement;
@@ -1479,7 +1371,6 @@
 
       device.classList.remove('laptop', 'phone');
       device.classList.add(v);
-
       if (browserBar) browserBar.style.display = v === 'phone' ? 'none' : '';
 
       const shotPath = card.dataset[v === 'phone' ? 'shotMobile' : 'shotDesktop'];
@@ -1523,17 +1414,10 @@
 
   function formatPhone(value) {
     const digits = value.replace(/\D/g, '').slice(0, 10);
-    let formatted = '';
-
     if (digits.length === 0) return '';
-    if (digits.length <= 3) {
-      formatted = '(' + digits;
-    } else if (digits.length <= 6) {
-      formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
-    } else {
-      formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
-    }
-    return formatted;
+    if (digits.length <= 3) return '(' + digits;
+    if (digits.length <= 6) return '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+    return '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
   }
 
   phoneInput.addEventListener('input', (e) => {
@@ -1541,18 +1425,13 @@
     const oldValue = e.target.value;
     const newValue = formatPhone(oldValue);
     e.target.value = newValue;
-
-    // Maintain caret position
     if (before === oldValue.length) {
       e.target.setSelectionRange(newValue.length, newValue.length);
     }
   });
 
   phoneInput.addEventListener('keydown', (e) => {
-    // Allow only digits, navigation, backspace, paste
-    const allowed = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter',
-                     'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
-                     'Home', 'End'];
+    const allowed = ['Backspace','Delete','Tab','Escape','Enter','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'];
     if (allowed.includes(e.key)) return;
     if ((e.ctrlKey || e.metaKey) && ['a','c','v','x'].includes(e.key.toLowerCase())) return;
     if (!/^\d$/.test(e.key)) e.preventDefault();
@@ -1566,6 +1445,7 @@
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
   const formKind = document.getElementById('formKind');
+  const formSource = document.getElementById('formSource');
   const form = document.getElementById('leadForm');
   const stepsTrack = document.getElementById('stepsTrack');
   const stepDots = document.querySelectorAll('[data-step-dot]');
@@ -1598,23 +1478,14 @@
   function setStep(n) {
     currentStep = Math.max(0, Math.min(TOTAL_STEPS - 1, n));
     stepsTrack.dataset.step = currentStep;
-
     stepDots.forEach((dot, i) => {
       dot.classList.toggle('active', i === currentStep);
       dot.classList.toggle('done', i < currentStep);
     });
-
     stepLabel.textContent = 'Step ' + (currentStep + 1) + ' of ' + TOTAL_STEPS;
-
     btnBack.disabled = currentStep === 0;
+    btnNextText.textContent = currentStep === TOTAL_STEPS - 1 ? 'Send' : 'Continue';
 
-    if (currentStep === TOTAL_STEPS - 1) {
-      btnNextText.textContent = 'Send';
-    } else {
-      btnNextText.textContent = 'Continue';
-    }
-
-    // Auto-focus first input on step
     setTimeout(() => {
       const stepEl = stepsTrack.children[currentStep];
       const firstInput = stepEl.querySelector('input, textarea');
@@ -1622,61 +1493,46 @@
     }, 350);
   }
 
-  function clearFieldError(fieldName) {
-    const field = form.querySelector('[data-field="' + fieldName + '"]');
-    if (field) field.classList.remove('has-error');
+  function clearFieldError(name) {
+    const f = form.querySelector('[data-field="' + name + '"]');
+    if (f) f.classList.remove('has-error');
   }
 
-  function showFieldError(fieldName, message) {
-    const field = form.querySelector('[data-field="' + fieldName + '"]');
-    if (!field) return;
-    field.classList.add('has-error');
-    if (message) {
-      const errEl = field.querySelector('.field-error');
-      if (errEl) errEl.textContent = message;
+  function showFieldError(name, msg) {
+    const f = form.querySelector('[data-field="' + name + '"]');
+    if (!f) return;
+    f.classList.add('has-error');
+    if (msg) {
+      const e = f.querySelector('.field-error');
+      if (e) e.textContent = msg;
     }
   }
 
   function validateStep(step) {
     let valid = true;
-
     if (step === 0) {
       const name = form.name.value.trim();
       const phone = form.phone.value.replace(/\D/g, '');
-
-      if (!name) {
-        showFieldError('name', 'Please enter your name');
-        valid = false;
-      } else clearFieldError('name');
-
-      if (phone.length < 7) {
-        showFieldError('phone', 'Please enter a valid phone number');
-        valid = false;
-      } else clearFieldError('phone');
+      if (!name) { showFieldError('name','Please enter your name'); valid = false; } else clearFieldError('name');
+      if (phone.length < 7) { showFieldError('phone','Please enter a valid phone number'); valid = false; } else clearFieldError('phone');
     }
-
     if (step === 1) {
       const email = form.email.value.trim();
-      if (!email) {
-        showFieldError('email', 'Please enter your email');
-        valid = false;
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showFieldError('email', 'Please enter a valid email');
-        valid = false;
-      } else clearFieldError('email');
+      if (!email) { showFieldError('email','Please enter your email'); valid = false; }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFieldError('email','Please enter a valid email'); valid = false; }
+      else clearFieldError('email');
     }
-
     return valid;
   }
 
-  function openModal(kind) {
+  function openModal(kind, sourceOverride) {
     const cfg = MODAL_CONFIG[kind] || MODAL_CONFIG.demo;
     modalEyebrow.textContent = cfg.eyebrow;
     modalTitle.textContent = cfg.title;
     modalDesc.textContent = cfg.desc;
     formKind.value = cfg.kind;
+    if (sourceOverride) formSource.value = sourceOverride;
 
-    // reset state
     formError.classList.remove('visible');
     formError.textContent = '';
     successScreen.classList.remove('visible');
@@ -1693,10 +1549,14 @@
   function closeModal() {
     backdrop.classList.remove('open');
     document.body.classList.remove('modal-open');
-    setTimeout(() => {
-      form.reset();
-      setStep(0);
-    }, 300);
+    setTimeout(() => { form.reset(); setStep(0); }, 300);
+    // clean URL params if present
+    if (window.location.search) {
+      const url = new URL(window.location);
+      url.searchParams.delete('modal');
+      url.searchParams.delete('from');
+      history.replaceState({}, '', url.pathname + (url.search || '') + url.hash);
+    }
   }
 
   document.querySelectorAll('[data-open-modal]').forEach(btn => {
@@ -1705,24 +1565,16 @@
 
   modalClose.addEventListener('click', closeModal);
   successClose.addEventListener('click', closeModal);
-
-  backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) closeModal();
-  });
-
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
   });
 
-  // Clear error on user input
-  ['name', 'phone', 'email'].forEach(name => {
+  ['name','phone','email'].forEach(name => {
     const el = form.querySelector('[name="' + name + '"]');
-    if (el) {
-      el.addEventListener('input', () => clearFieldError(name));
-    }
+    if (el) el.addEventListener('input', () => clearFieldError(name));
   });
 
-  // Allow Enter to advance step
   form.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
       e.preventDefault();
@@ -1730,12 +1582,8 @@
     }
   });
 
-  // BACK
-  btnBack.addEventListener('click', () => {
-    if (currentStep > 0) setStep(currentStep - 1);
-  });
+  btnBack.addEventListener('click', () => { if (currentStep > 0) setStep(currentStep - 1); });
 
-  // NEXT / SUBMIT
   btnNext.addEventListener('click', async () => {
     if (!validateStep(currentStep)) return;
 
@@ -1744,9 +1592,9 @@
       return;
     }
 
-    // Final step — submit
     const data = {
       kind: formKind.value,
+      source: formSource.value,
       name: form.name.value.trim(),
       phone: '+1 ' + form.phone.value.trim(),
       email: form.email.value.trim(),
@@ -1767,18 +1615,14 @@
       data.website ? '*Website:* ' + data.website : '',
       data.message ? '*Comment:* ' + data.message : '',
       '',
-      '_From: bars.wetwo.studio_'
+      '_From: ' + data.source + '_'
     ].filter(Boolean).join('\n');
 
     try {
       const response = await fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: TG_CHAT_ID,
-          text: text,
-          parse_mode: 'Markdown'
-        })
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' })
       });
       const result = await response.json();
       if (!result.ok) throw new Error(result.description || 'Telegram API error');
@@ -1796,9 +1640,7 @@
   });
 
   /* ───── SWIPE ON MOBILE ───── */
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchActive = false;
+  let touchStartX = 0, touchStartY = 0, touchActive = false;
 
   stepsTrack.addEventListener('touchstart', (e) => {
     if (e.target.matches('input, textarea')) return;
@@ -1810,23 +1652,28 @@
   stepsTrack.addEventListener('touchend', (e) => {
     if (!touchActive) return;
     touchActive = false;
-
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
-
-    // Only horizontal swipes
     if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx)) return;
-
     if (dx < 0) {
-      // swipe left -> next
-      if (validateStep(currentStep) && currentStep < TOTAL_STEPS - 1) {
-        setStep(currentStep + 1);
-      }
+      if (validateStep(currentStep) && currentStep < TOTAL_STEPS - 1) setStep(currentStep + 1);
     } else {
-      // swipe right -> back
       if (currentStep > 0) setStep(currentStep - 1);
     }
   }, { passive: true });
+
+  /* ───── AUTO-OPEN MODAL FROM URL PARAM (for guides redirecting here) ───── */
+  (function checkUrlForModal() {
+    const params = new URLSearchParams(window.location.search);
+    const modalParam = params.get('modal');
+    const fromParam = params.get('from');
+    if (modalParam === 'demo' || modalParam === 'full') {
+      // Wait for page to settle
+      setTimeout(() => {
+        openModal(modalParam, fromParam || 'bars.wetwo.studio');
+      }, 300);
+    }
+  })();
 </script>
 
 </body>
