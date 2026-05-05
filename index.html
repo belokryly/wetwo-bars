@@ -82,6 +82,99 @@
 
   .controls { display: flex; align-items: center; gap: 8px; }
 
+  /* Capacity progress widget */
+  .capacity {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 7px 14px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    min-width: 200px;
+  }
+
+  .capacity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    line-height: 1.2;
+  }
+
+  .capacity-month {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .capacity-count {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+
+  .capacity-count .lim { color: var(--ink-mute); font-weight: 400; }
+
+  .capacity-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--rule);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .capacity-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 100px;
+    transition: width .8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle moving shine on the fill */
+  .capacity-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.25) 50%,
+      transparent 100%);
+    animation: capacity-shine 2.6s ease-in-out infinite;
+  }
+
+  @keyframes capacity-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  .capacity-status {
+    font-size: 10px;
+    color: var(--ink-mute);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .capacity-status.warn {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* On mobile / narrow — hide the whole capacity widget to free space */
+  @media (max-width: 880px) {
+    .capacity { display: none; }
+  }
+
   .toggle-group {
     display: inline-flex;
     background: var(--surface);
@@ -810,7 +903,7 @@
 
   footer {
     border-top: 1px solid var(--rule);
-    padding: 28px 0;
+    padding: 28px 0 100px; /* extra bottom space so sticky CTA bar doesn't overlap on scroll */
   }
 
   .footer-inner {
@@ -840,6 +933,32 @@
       wetwo<span class="dot">.</span>studio<span class="crumb"> / bars</span>
     </a>
     <div class="controls">
+
+      <!--
+        ═══════════════════════════════════════════════════════════
+        CAPACITY WIDGET — EDIT NUMBERS HERE
+        ═══════════════════════════════════════════════════════════
+        - Change data-booked to current confirmed projects this month
+        - Change data-limit to total monthly capacity
+        - Month name auto-detects from system date
+        - On 1st of new month, set data-booked back to 0
+      -->
+      <div class="capacity"
+           id="capacity"
+           data-booked="7"
+           data-limit="10"
+           title="Monthly project capacity">
+        <div class="capacity-row">
+          <span class="capacity-month" id="capacityMonth">December · 2026</span>
+          <span class="capacity-count">
+            <span id="capacityBooked">7</span><span class="lim">/<span id="capacityLimit">10</span></span>
+          </span>
+        </div>
+        <div class="capacity-bar">
+          <div class="capacity-fill" id="capacityFill" style="width: 70%;"></div>
+        </div>
+        <div class="capacity-status" id="capacityStatus">3 spots left this month</div>
+      </div>
 
       <div class="toggle-group" role="tablist" aria-label="Preview format">
         <button class="toggle-btn active" data-view="laptop" aria-pressed="true" title="Desktop preview">
@@ -982,7 +1101,7 @@
 
 <footer>
   <div class="container footer-inner">
-    <span>© 2025 WETWO STUDIO · NYC</span>
+    <span>© 2026 WETWO STUDIO · NYC</span>
     <a href="mailto:hello@wetwo.studio">hello@wetwo.studio</a>
   </div>
 </footer>
@@ -1076,6 +1195,51 @@
      route through a Cloudflare Worker (see deploy notes). */
   const TG_BOT_TOKEN = '8325119822:AAG3o98A8jjiRV0fXSI9ZsHiroHK3kx_mHE';
   const TG_CHAT_ID = '5432379925';
+
+  /* ─────────  CAPACITY WIDGET  ───────── */
+  (function initCapacity() {
+    const el = document.getElementById('capacity');
+    if (!el) return;
+
+    const booked = parseInt(el.dataset.booked, 10) || 0;
+    const limit = parseInt(el.dataset.limit, 10) || 10;
+    const left = Math.max(0, limit - booked);
+    const pct = Math.min(100, Math.round((booked / limit) * 100));
+
+    // Month name from system date (auto-updates each month)
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const now = new Date();
+    const monthName = monthNames[now.getMonth()];
+    const year = now.getFullYear();
+    const nextMonthName = monthNames[(now.getMonth() + 1) % 12];
+
+    document.getElementById('capacityMonth').textContent = monthName + ' \u00b7 ' + year;
+    document.getElementById('capacityBooked').textContent = booked;
+    document.getElementById('capacityLimit').textContent = limit;
+
+    // Animate fill on load
+    const fill = document.getElementById('capacityFill');
+    fill.style.width = '0%';
+    setTimeout(() => { fill.style.width = pct + '%'; }, 200);
+
+    // Status text logic
+    const status = document.getElementById('capacityStatus');
+    if (left === 0) {
+      status.textContent = 'Fully booked \u00b7 Now booking ' + nextMonthName;
+      status.classList.add('warn');
+    } else if (left === 1) {
+      status.textContent = 'Last spot left this month';
+      status.classList.add('warn');
+    } else if (left <= 3) {
+      status.textContent = left + ' spots left this month';
+      status.classList.add('warn');
+    } else {
+      status.textContent = left + ' spots left this month';
+    }
+  })();
 
   /* ─────────  THEME  ───────── */
   const root = document.documentElement;
