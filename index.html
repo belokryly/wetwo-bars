@@ -8,13 +8,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root[data-theme="dark"] {
     --bg: #0a0907;
     --surface: #14110d;
     --surface-2: #1c1813;
+    --surface-3: #221d17;
     --ink: #f4f0e6;
     --ink-soft: #b8b1a0;
     --ink-mute: #6e685b;
@@ -22,13 +23,16 @@
     --rule-strong: #3a342c;
     --accent: #d4a655;
     --accent-soft: #b08a3e;
+    --accent-glow: rgba(212, 166, 85, 0.18);
     --backdrop: rgba(0,0,0,0.78);
+    --error: #e87575;
   }
 
   :root[data-theme="light"] {
     --bg: #f6f3ec;
     --surface: #fbf9f3;
     --surface-2: #ffffff;
+    --surface-3: #f4f0e6;
     --ink: #14110d;
     --ink-soft: #4a463e;
     --ink-mute: #8c8678;
@@ -36,7 +40,9 @@
     --rule-strong: #b8b1a0;
     --accent: #b08a3e;
     --accent-soft: #d4a655;
+    --accent-glow: rgba(176, 138, 62, 0.15);
     --backdrop: rgba(20,17,13,0.55);
+    --error: #c14545;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,7 +61,9 @@
     flex-direction: column;
   }
 
-  body.modal-open { overflow: hidden; }
+  body.modal-open {
+    overflow: hidden;
+  }
 
   a { color: inherit; text-decoration: none; }
   button { font: inherit; cursor: pointer; border: none; background: transparent; color: inherit; }
@@ -154,14 +162,13 @@
   }
 
   @media (max-width: 920px) {
-    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
   }
 
-  /* ─── Mobile: single column with dividers ─── */
   @media (max-width: 640px) {
     .cards-grid {
       grid-template-columns: 1fr;
-      gap: 0; /* dividers handle spacing */
+      gap: 0;
     }
     .card-divider { display: flex; }
     .card-wrap:not(:first-child) { padding-top: 56px; }
@@ -169,17 +176,8 @@
     .card-wrap:last-child { padding-bottom: 24px; }
   }
 
-  /* On 2-col tablet — also show dividers between rows */
-  @media (max-width: 920px) and (min-width: 641px) {
-    .cards-grid { gap: 32px 24px; }
-  }
+  .card-wrap { display: flex; flex-direction: column; }
 
-  .card-wrap {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Divider — only on mobile */
   .card-divider {
     display: none;
     align-items: center;
@@ -189,15 +187,13 @@
   }
 
   .card-divider .line {
-    flex: 1;
-    height: 1px;
+    flex: 1; height: 1px;
     background: linear-gradient(90deg, transparent, var(--rule-strong), transparent);
   }
 
   .card-divider .num {
     font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.24em;
     color: var(--accent);
     text-transform: uppercase;
@@ -468,7 +464,7 @@
   }
   .card:hover .card-link .arr { transform: translate(2px, -2px); }
 
-  /* ─── CAPACITY (now near footer) ─── */
+  /* ─── CAPACITY ─── */
 
   .capacity-section {
     padding: 64px 0 80px;
@@ -487,10 +483,8 @@
 
   .capacity-eyebrow {
     font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 14px;
   }
@@ -526,12 +520,9 @@
 
   .capacity-fill::after {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255,255,255,0.3) 50%,
-      transparent 100%);
+      transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
     animation: capacity-shine 2.8s ease-in-out infinite;
   }
 
@@ -541,34 +532,18 @@
   }
 
   .capacity-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 16px;
     font-family: 'Archivo', sans-serif;
-    font-size: 13px;
-    color: var(--ink-soft);
+    font-size: 13px; color: var(--ink-soft);
   }
 
-  .capacity-count {
-    color: var(--ink);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-
+  .capacity-count { color: var(--ink); font-weight: 600; letter-spacing: 0.04em; }
   .capacity-count .sep,
   .capacity-count .total { color: var(--ink-mute); font-weight: 400; }
 
-  .capacity-status {
-    color: var(--ink-mute);
-    font-size: 12.5px;
-    letter-spacing: 0.04em;
-  }
-
-  .capacity-status.warn {
-    color: var(--accent);
-    font-weight: 500;
-  }
+  .capacity-status { color: var(--ink-mute); font-size: 12.5px; letter-spacing: 0.04em; }
+  .capacity-status.warn { color: var(--accent); font-weight: 500; }
 
   /* ─── FIXED CTA BAR ─── */
 
@@ -594,18 +569,14 @@
   .cta-bar-text {
     font-family: 'Archivo', sans-serif;
     font-size: 13px; font-weight: 500;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
+    color: var(--ink-soft); letter-spacing: 0.02em;
   }
 
-  @media (max-width: 720px) {
-    .cta-bar-text { display: none; }
-  }
+  @media (max-width: 720px) { .cta-bar-text { display: none; } }
 
   .cta-buttons {
     display: flex; gap: 10px; flex: 1; justify-content: flex-end;
   }
-
   @media (max-width: 720px) {
     .cta-buttons { flex: 1; justify-content: stretch; }
   }
@@ -621,18 +592,11 @@
     display: inline-flex; align-items: center;
     justify-content: center; gap: 8px;
   }
-
-  @media (max-width: 720px) {
-    .cta { flex: 1; padding: 14px 12px; font-size: 12px; }
-  }
-
-  @media (max-width: 380px) {
-    .cta { font-size: 11px; padding: 13px 8px; letter-spacing: 0.04em; }
-  }
+  @media (max-width: 720px) { .cta { flex: 1; padding: 14px 12px; font-size: 12px; } }
+  @media (max-width: 380px) { .cta { font-size: 11px; padding: 13px 8px; letter-spacing: 0.04em; } }
 
   .cta-primary {
-    background: var(--accent);
-    color: #1a1612;
+    background: var(--accent); color: #1a1612;
     border: 1px solid var(--accent);
   }
   .cta-primary:hover {
@@ -642,8 +606,7 @@
   }
 
   .cta-secondary {
-    background: transparent;
-    color: var(--ink);
+    background: transparent; color: var(--ink);
     border: 1px solid var(--rule-strong);
   }
   .cta-secondary:hover {
@@ -651,18 +614,18 @@
     transform: translateY(-1px);
   }
 
-  /* ─── MODAL (unchanged from v3, will rework next) ─── */
+  /* ═══════════════ MODAL — REWORKED ═══════════════ */
 
   .modal-backdrop {
     position: fixed; inset: 0;
     background: var(--backdrop);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 200;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;
     opacity: 0; pointer-events: none;
-    transition: opacity .25s ease;
+    transition: opacity .3s ease;
   }
 
   .modal-backdrop.open {
@@ -670,53 +633,91 @@
     pointer-events: auto;
   }
 
+  /* DESKTOP: centered */
   .modal {
     background: var(--surface);
     border: 1px solid var(--rule);
-    border-radius: 16px;
-    width: 100%; max-width: 520px;
-    max-height: 92vh; overflow-y: auto;
-    transform: translateY(20px) scale(0.98);
-    transition: transform .25s ease;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(0.97);
+    transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
   }
 
   .modal-backdrop.open .modal {
     transform: translateY(0) scale(1);
   }
 
+  /* MOBILE: bottom sheet */
+  @media (max-width: 600px) {
+    .modal-backdrop {
+      padding: 0;
+      align-items: flex-end;
+    }
+    .modal {
+      max-height: 92vh;
+      border-radius: 20px 20px 0 0;
+      transform: translateY(100%);
+    }
+    .modal-backdrop.open .modal {
+      transform: translateY(0);
+    }
+  }
+
+  /* Drag handle on mobile */
+  .modal-handle {
+    display: none;
+    width: 40px; height: 4px;
+    background: var(--rule-strong);
+    border-radius: 100px;
+    margin: 8px auto 0;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+  @media (max-width: 600px) { .modal-handle { display: block; } }
+
   .modal-close {
     position: absolute;
     top: 16px; right: 16px;
-    width: 32px; height: 32px;
+    width: 36px; height: 36px;
     border-radius: 50%;
-    color: var(--ink-mute);
+    background: var(--surface-2);
+    color: var(--ink-soft);
     display: flex; align-items: center; justify-content: center;
     transition: background .2s, color .2s;
-    z-index: 2;
+    z-index: 10;
   }
   .modal-close:hover {
     background: var(--rule);
     color: var(--ink);
   }
 
-  .modal-content { padding: 40px 32px 32px; }
-
-  @media (max-width: 480px) {
-    .modal-content { padding: 32px 24px 24px; }
+  /* Header — fixed */
+  .modal-head {
+    padding: 36px 32px 24px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 600px) {
+    .modal-head { padding: 32px 24px 20px; }
   }
 
   .modal-eyebrow {
     font-family: 'Archivo', sans-serif;
     font-size: 11px; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
+    letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .modal-title {
     font-family: 'Archivo', sans-serif;
-    font-size: clamp(24px, 4vw, 30px);
+    font-size: clamp(22px, 3.6vw, 28px);
     font-weight: 700; letter-spacing: -0.02em;
     line-height: 1.1;
     color: var(--ink);
@@ -725,15 +726,80 @@
   }
 
   .modal-desc {
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--ink-soft);
-    margin-bottom: 28px;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
-  .form-grid { display: flex; flex-direction: column; gap: 18px; }
+  /* Step progress */
+  .step-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px 16px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 600px) {
+    .step-progress { padding: 0 24px 16px; }
+  }
 
-  .field { display: flex; flex-direction: column; gap: 6px; }
+  .step-dots {
+    display: flex; gap: 6px; flex: 1;
+  }
+  .step-dot {
+    flex: 1;
+    height: 3px;
+    background: var(--rule);
+    border-radius: 100px;
+    transition: background .4s ease;
+  }
+  .step-dot.active { background: var(--accent); }
+  .step-dot.done { background: var(--accent-soft); }
+
+  .step-label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Steps wrapper — horizontal slider */
+  .steps-wrapper {
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+
+  .steps-track {
+    display: flex;
+    width: 300%;
+    transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .steps-track[data-step="0"] { transform: translateX(0%); }
+  .steps-track[data-step="1"] { transform: translateX(-33.333%); }
+  .steps-track[data-step="2"] { transform: translateX(-66.666%); }
+
+  .step {
+    width: 33.333%;
+    flex-shrink: 0;
+    padding: 8px 32px 28px;
+  }
+  @media (max-width: 600px) {
+    .step { padding: 8px 24px 24px; }
+  }
+
+  .step-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* Field */
+  .field { display: flex; flex-direction: column; gap: 7px; }
 
   .field label {
     font-family: 'Archivo', sans-serif;
@@ -749,46 +815,134 @@
     margin-left: 6px;
   }
 
+  .field .input-wrap {
+    position: relative;
+  }
+
   .field input,
   .field textarea {
     width: 100%;
     background: var(--surface-2);
     border: 1px solid var(--rule);
-    border-radius: 8px;
-    padding: 13px 14px;
+    border-radius: 10px;
+    padding: 14px 16px;
     color: var(--ink);
     font-family: 'Inter', sans-serif;
-    font-size: 14.5px; line-height: 1.4;
-    transition: border-color .2s, background .2s;
+    /* 16px on mobile prevents iOS auto-zoom */
+    font-size: 16px;
+    line-height: 1.4;
+    transition: border-color .2s, background .2s, box-shadow .2s;
     outline: none;
   }
 
+  @media (min-width: 601px) {
+    .field input, .field textarea { font-size: 14.5px; }
+  }
+
   .field input:focus,
-  .field textarea:focus { border-color: var(--accent); }
+  .field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+  }
 
   .field input::placeholder,
   .field textarea::placeholder { color: var(--ink-mute); }
 
-  .field textarea { resize: vertical; min-height: 80px; }
+  .field textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
 
-  .submit-btn {
-    margin-top: 8px;
-    background: var(--accent);
-    color: #1a1612;
+  /* Phone country prefix */
+  .field.phone-field input {
+    padding-left: 50px;
+  }
+  .phone-prefix {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    pointer-events: none;
+  }
+  @media (min-width: 601px) {
+    .phone-prefix { font-size: 14.5px; }
+  }
+
+  .field-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 2px;
+    min-height: 14px;
+    transition: opacity .2s;
+    opacity: 0;
+  }
+  .field.has-error .field-error { opacity: 1; }
+  .field.has-error input,
+  .field.has-error textarea {
+    border-color: var(--error);
+  }
+
+  /* Step actions (footer of modal) */
+  .step-actions {
+    padding: 20px 32px 28px;
+    border-top: 1px solid var(--rule);
+    background: var(--surface);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  @media (max-width: 600px) {
+    .step-actions { padding: 16px 24px 20px; }
+  }
+
+  .btn {
     font-family: 'Archivo', sans-serif;
-    font-size: 14px; font-weight: 600;
+    font-size: 13px; font-weight: 600;
     letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 16px 24px; border-radius: 100px;
+    padding: 14px 24px;
+    border-radius: 100px;
     cursor: pointer;
-    transition: background .2s, transform .15s, opacity .2s;
+    transition: all .2s ease;
     display: inline-flex; align-items: center;
     justify-content: center; gap: 8px;
+    white-space: nowrap;
   }
-  .submit-btn:hover { background: var(--accent-soft); }
-  .submit-btn:active { transform: scale(0.98); }
-  .submit-btn:disabled { opacity: 0.6; cursor: wait; background: var(--accent); }
 
-  .submit-spinner {
+  .btn-back {
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 14px 18px;
+  }
+  .btn-back:hover { color: var(--ink); }
+  .btn-back svg { width: 14px; height: 14px; }
+
+  .btn-back:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .btn-primary-form {
+    background: var(--accent);
+    color: #1a1612;
+    flex: 1;
+    max-width: 240px;
+    margin-left: auto;
+  }
+  .btn-primary-form:hover { background: var(--accent-soft); }
+  .btn-primary-form:active { transform: scale(0.98); }
+  .btn-primary-form:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .btn-spinner {
     width: 14px; height: 14px;
     border: 2px solid currentColor;
     border-top-color: transparent;
@@ -796,52 +950,58 @@
     animation: spin 0.8s linear infinite;
     display: none;
   }
-
-  .submit-btn.loading .submit-spinner { display: inline-block; }
-  .submit-btn.loading .submit-text { opacity: 0.6; }
+  .btn-primary-form.loading .btn-spinner { display: inline-block; }
+  .btn-primary-form.loading .btn-text { opacity: 0.7; }
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* Privacy note inside step 3 */
+  .privacy-note {
+    margin-top: 6px;
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  /* Form-wide error */
   .form-error {
-    margin-top: 8px;
+    background: rgba(232, 117, 117, 0.1);
+    border: 1px solid rgba(232, 117, 117, 0.25);
+    color: var(--error);
+    padding: 10px 14px;
+    border-radius: 8px;
     font-size: 13px;
-    color: #e87575;
+    line-height: 1.4;
     display: none;
   }
   .form-error.visible { display: block; }
 
-  .privacy-note {
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--ink-mute);
-    line-height: 1.45;
-    text-align: center;
-  }
-
+  /* ─── Success screen ─── */
   .success-screen {
     display: none;
     text-align: center;
-    padding: 24px 0 8px;
+    padding: 24px 32px 32px;
+  }
+  @media (max-width: 600px) {
+    .success-screen { padding: 24px 24px 24px; }
   }
 
   .success-screen.visible { display: block; }
-  .form-grid.hidden { display: none; }
-  .modal-content.success-mode .modal-eyebrow,
-  .modal-content.success-mode .modal-title,
-  .modal-content.success-mode .modal-desc { display: none; }
 
   .success-mark {
-    width: 56px; height: 56px;
+    width: 64px; height: 64px;
     border-radius: 50%;
     background: var(--accent);
     color: #1a1612;
     margin: 0 auto 22px;
     display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 8px var(--accent-glow);
   }
 
   .success-title {
     font-family: 'Archivo', sans-serif;
-    font-size: clamp(22px, 4vw, 28px);
+    font-size: clamp(24px, 4vw, 30px);
     font-weight: 700; letter-spacing: -0.02em;
     margin-bottom: 12px;
     color: var(--ink);
@@ -871,11 +1031,16 @@
   }
   .success-close:hover { border-color: var(--ink); }
 
-  /* ─── FOOTER ─── */
+  /* When success — hide head/progress/steps/actions */
+  .modal[data-state="success"] .modal-head,
+  .modal[data-state="success"] .step-progress,
+  .modal[data-state="success"] .steps-wrapper,
+  .modal[data-state="success"] .step-actions { display: none; }
 
+  /* ─── FOOTER ─── */
   footer {
     border-top: 1px solid var(--rule);
-    padding: 28px 0 100px; /* extra space so sticky CTA bar doesn't cover */
+    padding: 28px 0 100px;
   }
 
   .footer-inner {
@@ -893,7 +1058,6 @@
     color: var(--ink-soft);
     transition: color .2s;
   }
-
   .footer-inner a:hover { color: var(--accent); }
 </style>
 </head>
@@ -1061,18 +1225,10 @@
   </div>
 </section>
 
-<!-- ═══════ CAPACITY (moved here, before footer) ═══════ -->
+<!-- CAPACITY -->
 <section class="capacity-section">
   <div class="container">
-    <!--
-      ═══════════════════════════════════════════════════════════
-      CAPACITY WIDGET — EDIT NUMBERS HERE
-      ═══════════════════════════════════════════════════════════
-      - Change data-booked to current confirmed projects this month
-      - Change data-limit to total monthly capacity
-      - Month name auto-detects from system date
-      - On 1st of new month, set data-booked back to 0
-    -->
+    <!-- ═══ EDIT NUMBERS HERE ═══ -->
     <div class="capacity"
          id="capacity"
          data-booked="7"
@@ -1117,9 +1273,11 @@
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- ═══════════════ MODAL — 3-STEP WIZARD ═══════════════ -->
 <div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal" data-state="form" role="dialog" aria-modal="true">
+
+    <div class="modal-handle"></div>
 
     <button class="modal-close" id="modalClose" aria-label="Close">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
@@ -1127,60 +1285,118 @@
       </svg>
     </button>
 
-    <div class="modal-content" id="modalContent">
+    <!-- HEAD -->
+    <div class="modal-head">
       <div class="modal-eyebrow" id="modalEyebrow">Custom demo</div>
       <h2 class="modal-title" id="modalTitle">Order a custom demo</h2>
       <p class="modal-desc" id="modalDesc">After you submit, our manager will reach out. You can share your brief — or let us interpret your venue our own way.</p>
+    </div>
 
-      <form class="form-grid" id="leadForm" novalidate>
-        <input type="hidden" name="kind" id="formKind" value="Custom Demo Request">
+    <!-- PROGRESS -->
+    <div class="step-progress">
+      <div class="step-dots">
+        <div class="step-dot active" data-step-dot="0"></div>
+        <div class="step-dot" data-step-dot="1"></div>
+        <div class="step-dot" data-step-dot="2"></div>
+      </div>
+      <div class="step-label" id="stepLabel">Step 1 of 3</div>
+    </div>
 
-        <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" placeholder="First & last" required autocomplete="name">
+    <!-- FORM STEPS -->
+    <form id="leadForm" novalidate>
+      <input type="hidden" name="kind" id="formKind" value="Custom Demo Request">
+
+      <div class="steps-wrapper">
+        <div class="steps-track" id="stepsTrack" data-step="0">
+
+          <!-- STEP 1 — Contact -->
+          <div class="step">
+            <div class="step-grid">
+              <div class="field" data-field="name">
+                <label for="f-name">Your name</label>
+                <div class="input-wrap">
+                  <input id="f-name" name="name" type="text" placeholder="First &amp; last" autocomplete="name">
+                </div>
+                <div class="field-error">Please enter your name</div>
+              </div>
+
+              <div class="field phone-field" data-field="phone">
+                <label for="f-phone">Phone</label>
+                <div class="input-wrap">
+                  <span class="phone-prefix">+1</span>
+                  <input id="f-phone" name="phone" type="tel" placeholder="(___) ___-____" autocomplete="tel" inputmode="tel" maxlength="14">
+                </div>
+                <div class="field-error">Please enter a valid phone number</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 — Details -->
+          <div class="step">
+            <div class="step-grid">
+              <div class="field" data-field="email">
+                <label for="f-email">Email</label>
+                <div class="input-wrap">
+                  <input id="f-email" name="email" type="email" placeholder="you@venue.com" autocomplete="email" inputmode="email">
+                </div>
+                <div class="field-error">Please enter a valid email</div>
+              </div>
+
+              <div class="field" data-field="website">
+                <label for="f-site">Current website <span class="opt">(optional)</span></label>
+                <div class="input-wrap">
+                  <input id="f-site" name="website" type="text" placeholder="venue.com  ·  or 'we don't have one'">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 — Brief -->
+          <div class="step">
+            <div class="step-grid">
+              <div class="field" data-field="message">
+                <label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label>
+                <div class="input-wrap">
+                  <textarea id="f-msg" name="message" rows="3" placeholder="Booking flow, menu page, the whole vibe — anything."></textarea>
+                </div>
+              </div>
+
+              <div class="form-error" id="formError"></div>
+
+              <p class="privacy-note">By submitting you agree to receive a reply. No spam, no lists, no upsell.</p>
+            </div>
+          </div>
+
         </div>
-
-        <div class="field">
-          <label for="f-phone">Phone</label>
-          <input id="f-phone" name="phone" type="tel" placeholder="+1 (___) ___-____" required autocomplete="tel">
-        </div>
-
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" placeholder="you@venue.com" required autocomplete="email">
-        </div>
-
-        <div class="field">
-          <label for="f-site">Current website <span class="opt">(optional)</span></label>
-          <input id="f-site" name="website" type="text" placeholder="venue.com  ·  or 'we don't have one'">
-        </div>
-
-        <div class="field">
-          <label for="f-msg">Anything else? <span class="opt">(optional)</span></label>
-          <textarea id="f-msg" name="message" rows="2" placeholder="Booking flow, menu page, the whole vibe — anything."></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="submit-spinner"></span>
-          <span class="submit-text">Send</span>
-        </button>
-
-        <div class="form-error" id="formError"></div>
-        <p class="privacy-note">By submitting you agree to receive a reply. No spam, no lists, no upsell.</p>
-      </form>
-
-      <div class="success-screen" id="successScreen">
-        <div class="success-mark">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-        <h3 class="success-title">Thank you!</h3>
-        <p class="success-desc">We got your request. Our manager will reach out shortly to confirm details. Check your phone — that's where we'll call from.</p>
-        <button class="success-close" id="successClose">Close</button>
       </div>
 
+      <!-- ACTIONS -->
+      <div class="step-actions">
+        <button type="button" class="btn btn-back" id="btnBack" disabled>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 12L6 8L10 4"/>
+          </svg>
+          <span>Back</span>
+        </button>
+        <button type="button" class="btn btn-primary-form" id="btnNext">
+          <span class="btn-spinner"></span>
+          <span class="btn-text">Continue</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-mark">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 class="success-title">Thank you!</h3>
+      <p class="success-desc">We got your request. Our manager will reach out shortly to confirm details. Check your phone — that's where we'll call from.</p>
+      <button class="success-close" id="successClose">Close</button>
     </div>
+
   </div>
 </div>
 
@@ -1199,17 +1415,13 @@
     const left = Math.max(0, limit - booked);
     const pct = Math.min(100, Math.round((booked / limit) * 100));
 
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const now = new Date();
     const monthName = monthNames[now.getMonth()];
     const year = now.getFullYear();
     const nextMonthName = monthNames[(now.getMonth() + 1) % 12];
 
-    document.getElementById('capacityEyebrow').textContent =
-      monthName + ' \u00b7 ' + year;
+    document.getElementById('capacityEyebrow').textContent = monthName + ' \u00b7 ' + year;
     document.getElementById('capacityBooked').textContent = booked;
     document.getElementById('capacityLimit').textContent = limit;
 
@@ -1235,7 +1447,6 @@
   /* ───── THEME ───── */
   const root = document.documentElement;
   const themeBtns = document.querySelectorAll('.toggle-btn[data-theme]');
-
   const savedTheme = localStorage.getItem('wetwo-theme') || 'dark';
   root.setAttribute('data-theme', savedTheme);
   themeBtns.forEach(b => {
@@ -1243,7 +1454,6 @@
     b.classList.toggle('active', is);
     b.setAttribute('aria-pressed', is);
   });
-
   themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const t = btn.dataset.theme;
@@ -1257,7 +1467,7 @@
     });
   });
 
-  /* ───── VIEW (laptop / phone) ───── */
+  /* ───── VIEW TOGGLE ───── */
   const viewBtns = document.querySelectorAll('.toggle-btn[data-view]');
   const cards = document.querySelectorAll('[data-card]');
 
@@ -1281,13 +1491,11 @@
         img.src = shotPath;
         img.className = 'screen-img';
         img.alt = '';
-
         img.onload = () => {
           if (existingImg) existingImg.remove();
           if (existingFallback) existingFallback.style.display = 'none';
           screenWrap.appendChild(img);
         };
-
         img.onerror = () => {
           if (existingImg) existingImg.remove();
           if (existingFallback) existingFallback.style.display = '';
@@ -1310,20 +1518,67 @@
     btn.addEventListener('click', () => setView(btn.dataset.view));
   });
 
-  /* ───── MODAL ───── */
+  /* ───── PHONE MASK ───── */
+  const phoneInput = document.getElementById('f-phone');
+
+  function formatPhone(value) {
+    const digits = value.replace(/\D/g, '').slice(0, 10);
+    let formatted = '';
+
+    if (digits.length === 0) return '';
+    if (digits.length <= 3) {
+      formatted = '(' + digits;
+    } else if (digits.length <= 6) {
+      formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+    } else {
+      formatted = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+    }
+    return formatted;
+  }
+
+  phoneInput.addEventListener('input', (e) => {
+    const before = e.target.selectionStart;
+    const oldValue = e.target.value;
+    const newValue = formatPhone(oldValue);
+    e.target.value = newValue;
+
+    // Maintain caret position
+    if (before === oldValue.length) {
+      e.target.setSelectionRange(newValue.length, newValue.length);
+    }
+  });
+
+  phoneInput.addEventListener('keydown', (e) => {
+    // Allow only digits, navigation, backspace, paste
+    const allowed = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter',
+                     'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+                     'Home', 'End'];
+    if (allowed.includes(e.key)) return;
+    if ((e.ctrlKey || e.metaKey) && ['a','c','v','x'].includes(e.key.toLowerCase())) return;
+    if (!/^\d$/.test(e.key)) e.preventDefault();
+  });
+
+  /* ───── 3-STEP WIZARD ───── */
   const backdrop = document.getElementById('modalBackdrop');
   const modalClose = document.getElementById('modalClose');
-  const modalContent = document.getElementById('modalContent');
+  const modal = document.getElementById('modal');
   const modalEyebrow = document.getElementById('modalEyebrow');
   const modalTitle = document.getElementById('modalTitle');
   const modalDesc = document.getElementById('modalDesc');
   const formKind = document.getElementById('formKind');
   const form = document.getElementById('leadForm');
+  const stepsTrack = document.getElementById('stepsTrack');
+  const stepDots = document.querySelectorAll('[data-step-dot]');
+  const stepLabel = document.getElementById('stepLabel');
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+  const btnNextText = btnNext.querySelector('.btn-text');
   const formError = document.getElementById('formError');
-  const submitBtn = document.getElementById('submitBtn');
   const successScreen = document.getElementById('successScreen');
   const successClose = document.getElementById('successClose');
-  const formGrid = document.querySelector('.form-grid');
+
+  let currentStep = 0;
+  const TOTAL_STEPS = 3;
 
   const MODAL_CONFIG = {
     demo: {
@@ -1340,6 +1595,80 @@
     }
   };
 
+  function setStep(n) {
+    currentStep = Math.max(0, Math.min(TOTAL_STEPS - 1, n));
+    stepsTrack.dataset.step = currentStep;
+
+    stepDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentStep);
+      dot.classList.toggle('done', i < currentStep);
+    });
+
+    stepLabel.textContent = 'Step ' + (currentStep + 1) + ' of ' + TOTAL_STEPS;
+
+    btnBack.disabled = currentStep === 0;
+
+    if (currentStep === TOTAL_STEPS - 1) {
+      btnNextText.textContent = 'Send';
+    } else {
+      btnNextText.textContent = 'Continue';
+    }
+
+    // Auto-focus first input on step
+    setTimeout(() => {
+      const stepEl = stepsTrack.children[currentStep];
+      const firstInput = stepEl.querySelector('input, textarea');
+      if (firstInput && window.innerWidth > 600) firstInput.focus();
+    }, 350);
+  }
+
+  function clearFieldError(fieldName) {
+    const field = form.querySelector('[data-field="' + fieldName + '"]');
+    if (field) field.classList.remove('has-error');
+  }
+
+  function showFieldError(fieldName, message) {
+    const field = form.querySelector('[data-field="' + fieldName + '"]');
+    if (!field) return;
+    field.classList.add('has-error');
+    if (message) {
+      const errEl = field.querySelector('.field-error');
+      if (errEl) errEl.textContent = message;
+    }
+  }
+
+  function validateStep(step) {
+    let valid = true;
+
+    if (step === 0) {
+      const name = form.name.value.trim();
+      const phone = form.phone.value.replace(/\D/g, '');
+
+      if (!name) {
+        showFieldError('name', 'Please enter your name');
+        valid = false;
+      } else clearFieldError('name');
+
+      if (phone.length < 7) {
+        showFieldError('phone', 'Please enter a valid phone number');
+        valid = false;
+      } else clearFieldError('phone');
+    }
+
+    if (step === 1) {
+      const email = form.email.value.trim();
+      if (!email) {
+        showFieldError('email', 'Please enter your email');
+        valid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showFieldError('email', 'Please enter a valid email');
+        valid = false;
+      } else clearFieldError('email');
+    }
+
+    return valid;
+  }
+
   function openModal(kind) {
     const cfg = MODAL_CONFIG[kind] || MODAL_CONFIG.demo;
     modalEyebrow.textContent = cfg.eyebrow;
@@ -1347,27 +1676,27 @@
     modalDesc.textContent = cfg.desc;
     formKind.value = cfg.kind;
 
+    // reset state
     formError.classList.remove('visible');
     formError.textContent = '';
     successScreen.classList.remove('visible');
-    formGrid.classList.remove('hidden');
-    modalContent.classList.remove('success-mode');
-    submitBtn.classList.remove('loading');
-    submitBtn.disabled = false;
+    modal.dataset.state = 'form';
+    btnNext.classList.remove('loading');
+    btnNext.disabled = false;
+    form.querySelectorAll('.field').forEach(f => f.classList.remove('has-error'));
+    setStep(0);
 
     backdrop.classList.add('open');
     document.body.classList.add('modal-open');
-
-    setTimeout(() => {
-      const firstInput = form.querySelector('input');
-      if (firstInput) firstInput.focus();
-    }, 280);
   }
 
   function closeModal() {
     backdrop.classList.remove('open');
     document.body.classList.remove('modal-open');
-    setTimeout(() => form.reset(), 250);
+    setTimeout(() => {
+      form.reset();
+      setStep(0);
+    }, 300);
   }
 
   document.querySelectorAll('[data-open-modal]').forEach(btn => {
@@ -1385,34 +1714,49 @@
     if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
   });
 
-  /* ───── FORM SUBMIT ───── */
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Clear error on user input
+  ['name', 'phone', 'email'].forEach(name => {
+    const el = form.querySelector('[name="' + name + '"]');
+    if (el) {
+      el.addEventListener('input', () => clearFieldError(name));
+    }
+  });
 
+  // Allow Enter to advance step
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      btnNext.click();
+    }
+  });
+
+  // BACK
+  btnBack.addEventListener('click', () => {
+    if (currentStep > 0) setStep(currentStep - 1);
+  });
+
+  // NEXT / SUBMIT
+  btnNext.addEventListener('click', async () => {
+    if (!validateStep(currentStep)) return;
+
+    if (currentStep < TOTAL_STEPS - 1) {
+      setStep(currentStep + 1);
+      return;
+    }
+
+    // Final step — submit
     const data = {
       kind: formKind.value,
       name: form.name.value.trim(),
-      phone: form.phone.value.trim(),
+      phone: '+1 ' + form.phone.value.trim(),
       email: form.email.value.trim(),
       website: form.website.value.trim(),
       message: form.message.value.trim()
     };
 
-    if (!data.name || !data.phone || !data.email) {
-      formError.textContent = 'Please fill in name, phone and email.';
-      formError.classList.add('visible');
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      formError.textContent = 'Please enter a valid email.';
-      formError.classList.add('visible');
-      return;
-    }
-
     formError.classList.remove('visible');
-    submitBtn.classList.add('loading');
-    submitBtn.disabled = true;
+    btnNext.classList.add('loading');
+    btnNext.disabled = true;
 
     const text = [
       '*\u{1F195} New lead \u2014 ' + data.kind + '*',
@@ -1436,22 +1780,53 @@
           parse_mode: 'Markdown'
         })
       });
-
       const result = await response.json();
       if (!result.ok) throw new Error(result.description || 'Telegram API error');
 
-      formGrid.classList.add('hidden');
-      modalContent.classList.add('success-mode');
+      modal.dataset.state = 'success';
       successScreen.classList.add('visible');
 
     } catch (err) {
       console.error('Form submission error:', err);
       formError.textContent = "Couldn't send your request. Please try again or email hello@wetwo.studio";
       formError.classList.add('visible');
-      submitBtn.classList.remove('loading');
-      submitBtn.disabled = false;
+      btnNext.classList.remove('loading');
+      btnNext.disabled = false;
     }
   });
+
+  /* ───── SWIPE ON MOBILE ───── */
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchActive = false;
+
+  stepsTrack.addEventListener('touchstart', (e) => {
+    if (e.target.matches('input, textarea')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchActive = true;
+  }, { passive: true });
+
+  stepsTrack.addEventListener('touchend', (e) => {
+    if (!touchActive) return;
+    touchActive = false;
+
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+
+    // Only horizontal swipes
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx)) return;
+
+    if (dx < 0) {
+      // swipe left -> next
+      if (validateStep(currentStep) && currentStep < TOTAL_STEPS - 1) {
+        setStep(currentStep + 1);
+      }
+    } else {
+      // swipe right -> back
+      if (currentStep > 0) setStep(currentStep - 1);
+    }
+  }, { passive: true });
 </script>
 
 </body>
